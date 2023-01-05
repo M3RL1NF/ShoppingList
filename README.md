@@ -1,12 +1,12 @@
 # ShoppingList
  JAVA SWING MVC Project P3
  
-# Requirements:
+## Requirements:
 - GitHub User 
 - GitHub Desktop
 - Apache Netbeans
 
-# Clone Repository:
+## Clone Repository:
 - Log in to GitHub Desktop
 - File -> Clone Repository
 
