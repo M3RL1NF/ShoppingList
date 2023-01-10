@@ -1,14 +1,16 @@
-[
-    {
-      "Anzahl": 1,
-      "Bezeichnung": "Öbst",
-      "Preis": 1.55,
-      "Erledigt": false
-    },
-    {
-      "Anzahl": 1,
-      "Bezeichnung": "Öbst",
-      "Preis": 1.55,
-      "Erledigt": false
-    }
-]
+{
+    "name": [
+        {
+          "Anzahl": 1,
+          "Bezeichnung": "Öbst",
+          "Preis": 1.55,
+          "Erledigt": false
+        },
+        {
+          "Anzahl": 1,
+          "Bezeichnung": "Öbst",
+          "Preis": 1.55,
+          "Erledigt": false
+        }
+    ]
+}

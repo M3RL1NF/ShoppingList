@@ -4,32 +4,34 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import java.io.FileReader;
+import java.io.Reader;
+import java.util.Iterator;
+import org.json.simple.parser.ParseException;
 
 public class Model{
         
     public void getShoppingListItems() {
         this.checkShoppingListFile();
        
-        /* 
         JSONParser parser = new JSONParser();
-        try {
-            Object obj = parser.parse(new FileReader("/Users/Shared/crunchify.json"));
-            // A JSON object. Key value pairs are unordered. JSONObject supports java.util.Map interface.
-            JSONObject jsonObject = (JSONObject) obj;
-            // A JSON array. JSONObject supports java.util.List interface.
-            JSONArray companyList = (JSONArray) jsonObject.get("Company List");
-            // An iterator over a collection. Iterator takes the place of Enumeration in the Java Collections Framework.
-            // Iterators differ from enumerations in two ways:
-            // 1. Iterators allow the caller to remove elements from the underlying collection during the iteration with well-defined semantics.
-            // 2. Method names have been improved.
-            Iterator<JSONObject> iterator = companyList.iterator();
-            while (iterator.hasNext()) {
-                System.out.println(iterator.next());
-            }
-        } catch (Exception e) {
+        
+        try (Reader reader = new FileReader("ShoppingList.json")) {
+
+            JSONObject jsonObject = (JSONObject) parser.parse(reader);
+            System.out.println(jsonObject);
+            
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
-        */
+        
     }
     
     // create, update, delete
