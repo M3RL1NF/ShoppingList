@@ -7,7 +7,7 @@ public class App {
         View view = new View();
         Controller controller = new Controller(model, view);
         
-        // Controller.initController();
+        controller.initController();
     }
     
 }

@@ -1,5 +1,6 @@
 package shoppinglist;
 
+
 public class Controller {
 
     private Model model;
@@ -12,11 +13,14 @@ public class Controller {
     }
     
     public void initView() {
-        
+
     }
     
     public void initController() {
-        
+        model.getShoppingListItems();
+        // model.createShoppingListFile();
+        // view.openFrame();
     }
+
     
 }
