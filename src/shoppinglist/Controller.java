@@ -3,8 +3,8 @@ package shoppinglist;
 
 public class Controller {
 
-    private Model model;
-    private View view;
+    public Model model;
+    public View view;
 
     public Controller(Model model, View view) {
         this.model = model;
@@ -17,9 +17,11 @@ public class Controller {
     }
     
     public void initController() {
-        model.getShoppingListItems();
+        Object shoppingList = new Object();
+        System.out.println(model.getShoppingListColumns());
+        // shoppingList.columns = model.getShoppingListItems();
         // model.createShoppingListFile();
-        // view.openFrame();
+        // view.openFrame(items);
     }
 
     

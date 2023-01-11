@@ -15,7 +15,26 @@ import org.json.simple.parser.ParseException;
 
 public class Model{
         
-    public void getShoppingListItems() {
+    public Object getShoppingListColumns() {
+        this.checkShoppingListFile();
+        
+        JSONParser parser = new JSONParser();
+        
+        try (Reader reader = new FileReader("ShoppingList.json")) {
+
+            JSONObject jsonObject = (JSONObject) parser.parse(reader);
+            Object columns  = jsonObject.get("columns");
+            System.out.println(columns);
+            return columns;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return new Object();
+    }
+    
+    public Object getShoppingListItems() {
         this.checkShoppingListFile();
        
         JSONParser parser = new JSONParser();
@@ -23,15 +42,17 @@ public class Model{
         try (Reader reader = new FileReader("ShoppingList.json")) {
 
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
-            System.out.println(jsonObject);
-            
-
+            Object columns  = jsonObject.get("columns");
+            Object items    = jsonObject.get("items");
+            System.out.println(columns);
+            System.out.println(items);
+            return items;
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        
+        return new Object();
     }
     
     // create, update, delete

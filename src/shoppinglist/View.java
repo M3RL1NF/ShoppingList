@@ -5,7 +5,7 @@ public class View {
     
     private JFrame frame;
     
-    public void openFrame() {
+    public void openFrame(Object items) {
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Einkaufsliste");
@@ -26,29 +26,29 @@ public class View {
                         "Erledigt",
                         "Bearbeiten"};
         
-      /*
-        
-          Object[][] data = {
-    {"Kathy", [][] "Smith",
-     "Snowboarding", new Integer(5), new Boolean(false)},
-    {"John", "Doe",
-     "Rowing", new Integer(3), new Boolean(true)},
-    {"Sue", "Black",
-     "Knitting", new Integer(2), new Boolean(false)},
-    {"Jane", "White",
-     "Speed reading", new Integer(20), new Boolean(true)},
-    {"Joe", "Brown",
-     "Pool", new Integer(10), new Boolean(false)}
-};
+      
+        /*
+        Object[][] data = {
+            {"Kathy", [][] "Smith",
+             "Snowboarding", new Integer(5), new Boolean(false)},
+            {"John", "Doe",
+             "Rowing", new Integer(3), new Boolean(true)},
+            {"Sue", "Black",
+             "Knitting", new Integer(2), new Boolean(false)},
+            {"Jane", "White",
+             "Speed reading", new Integer(20), new Boolean(true)},
+            {"Joe", "Brown",
+             "Pool", new Integer(10), new Boolean(false)}
+        };
 
         
-        JTable table = new JTable(data, columnNames);
-        
+        JTable table = new JTable(items, columnNames);
+       
         JScrollPane scrollPane = new JScrollPane(table);
         table.setFillsViewportHeight(true);
         
-            
-        */
+            */
+        
     }
- 
+
 }
