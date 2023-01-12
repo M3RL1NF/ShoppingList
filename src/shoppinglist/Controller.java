@@ -3,11 +3,11 @@ package shoppinglist;
 
 public class Controller {
 
-    public Model model;
+    public ShoppingList shoppingList;
     public View view;
 
-    public Controller(Model model, View view) {
-        this.model = model;
+    public Controller(ShoppingList shoppingList, View view) {
+        this.shoppingList = shoppingList;
         this.view = view;
         initView();
     }
@@ -17,11 +17,7 @@ public class Controller {
     }
     
     public void initController() {
-        Object shoppingList = new Object();
-        System.out.println(model.getShoppingListColumns());
-        // shoppingList.columns = model.getShoppingListItems();
-        // model.createShoppingListFile();
-        // view.openFrame(items);
+        System.out.println(shoppingList.getShoppingList().get(1));
     }
 
     

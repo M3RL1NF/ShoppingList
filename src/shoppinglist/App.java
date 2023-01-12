@@ -3,9 +3,9 @@ package shoppinglist;
 public class App {
     
     public static void main(String[] args) {
-        Model model = new Model();
+        ShoppingList shoppingList = new ShoppingList();
         View view = new View();
-        Controller controller = new Controller(model, view);
+        Controller controller = new Controller(shoppingList, view);
         
         controller.initController();
     }

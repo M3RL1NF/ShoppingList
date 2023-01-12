@@ -1,13 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package shoppinglist;
 
-/**
- *
- * @author merli
- */
-public class ShoppingListDAO {
+public class ShoppingListDAO /*  implements Dao<ShoppingList> */{
+    ShoppingListDAO shoppingList = new ShoppingListDAO();
     
+    public ShoppingListDAO() {
+        
+    }
+
+    public void write() {
+        ShoppingList shoppingList = new ShoppingList();
+    }
+    
+    public void read() {
+       /*
+        ShoppingList shoppingList = new ShoppingList();
+        ShoppingListDAO dao = new ShoppingListDAO("ShoppingList.dat", false);
+        dao.read(shoppingList);
+        dao.close();
+       */
+    }
+
+   
 }
