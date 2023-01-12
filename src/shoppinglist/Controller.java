@@ -13,12 +13,11 @@ public class Controller {
     }
     
     public void initView() {
-
+        view.GUI();
     }
     
     public void initController() {
-        System.out.println(shoppingList.getShoppingList().get(1));
-    }
 
+    }
     
 }
