@@ -1,14 +1,13 @@
 package shoppinglist;
 
-public class ShoppingListDAO /*  implements Dao<ShoppingList> */{
-    ShoppingListDAO shoppingList = new ShoppingListDAO();
+public class ItemDAO {
     
-    public ShoppingListDAO() {
+    public ItemDAO() {
         
     }
 
     public void write() {
-        ShoppingList shoppingList = new ShoppingList();
+        ItemDAO itemDAO = new ItemDAO();
     }
     
     public void read() {
@@ -18,6 +17,14 @@ public class ShoppingListDAO /*  implements Dao<ShoppingList> */{
         dao.read(shoppingList);
         dao.close();
        */
+    }
+    
+    public void update() {
+    
+    }
+    
+    public void delete() {
+    
     }
 
    

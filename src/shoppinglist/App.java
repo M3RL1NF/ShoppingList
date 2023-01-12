@@ -2,10 +2,10 @@ package shoppinglist;
 
 public class App {
     
+    // entrypoint
     public static void main(String[] args) {
-        ShoppingList shoppingList = new ShoppingList();
         View view = new View();
-        Controller controller = new Controller(shoppingList, view);
+        Controller controller = new Controller(view);
         
         controller.initController();
     }
