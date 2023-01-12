@@ -1,7 +1,6 @@
 package shoppinglist;
 import java.awt.*;
 import javax.swing.*;
-
 public class View{
     
     private JFrame frame;
