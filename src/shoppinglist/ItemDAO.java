@@ -1,31 +1,23 @@
 package shoppinglist;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class ItemDAO {
     
-    public ItemDAO() {
-        
+    public ItemDAO(String itemFile, boolean B) {
+        // itemFile = ItemFile.getFileName();
     }
 
     public void write() {
-        ItemDAO itemDAO = new ItemDAO();
+        
     }
     
     public void read() {
-       /*
-        ShoppingList shoppingList = new ShoppingList();
-        ShoppingListDAO dao = new ShoppingListDAO("ShoppingList.dat", false);
-        dao.read(shoppingList);
-        dao.close();
-       */
+       
     }
     
-    public void update() {
-    
-    }
-    
-    public void delete() {
+    public void close() {
     
     }
 
-   
 }
