@@ -4,17 +4,31 @@ import javax.swing.*;
 public class View{
     
     private JFrame frame;
+    
     private JPanel tableContainer;
     private JPanel sidebarContainer;
     private JPanel addNewContainer;
+    
+    
+    private JScrollPane scrollPane;
     private JTable table;
+    
+    private JButton Done;
+    private JButton Bearbeiten;
+    private JButton Delete;
+    
     private JLabel labelAnzahl;
     private JTextField inputAnzahl;
     private JLabel labelPreis;
     private JTextField inputPreis;
     private JLabel labelProdukt;
     private JTextField inputProdukt;
+    private JButton addButton; 
 
+    
+    
+    
+    
     private final String[] columnNames = {"Anzahl", "Produkt", "Preis", "Erledigt"};
         
     private final Object[][] items = {
@@ -38,11 +52,14 @@ public class View{
         tableContainer = new JPanel();
         tableContainer.setPreferredSize(new Dimension(100,175));
         tableContainer.setVisible(true);
+        tableContainer.setLayout(new BorderLayout());
         
             // Table Container Items
-        
+            
             table = new JTable(items, columnNames);
             
+            scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                        
         // Sidebar Container
             
         sidebarContainer = new JPanel();
@@ -51,6 +68,18 @@ public class View{
         
             // Sidebar Container Items
         
+            Done = new JButton("Done");
+            Bearbeiten = new JButton("Bearbeiten");
+            Delete = new JButton("Löschen");
+            
+        // addNew Container 
+            
+        addNewContainer = new JPanel();
+        addNewContainer.setPreferredSize(new Dimension(100,175));
+        addNewContainer.setVisible(true);
+        
+            // addNew Container Items
+            
             labelAnzahl = new JLabel("Anzahl");
             inputAnzahl = new JTextField();
             inputAnzahl.setBounds(100, 20, 165, 25);
@@ -63,14 +92,7 @@ public class View{
             inputProdukt = new JTextField();
             inputProdukt.setBounds(100, 20, 165, 25);
             
-        // addNew Container 
-            
-        addNewContainer = new JPanel();
-        addNewContainer.setPreferredSize(new Dimension(100,175));
-        addNewContainer.setVisible(true);
-        
-            // addNew Container Items
-        
+            addButton = new JButton("Hinzufügen");
         
         // frame.add Section
         
@@ -80,25 +102,31 @@ public class View{
         
         // tableContainer.add 
         
-        tableContainer.add(table);
+        tableContainer.add(scrollPane, BorderLayout.CENTER);
         
         // sidebarContainer.add Section
-
-        sidebarContainer.add(labelAnzahl);
-        sidebarContainer.add(inputAnzahl);
-        sidebarContainer.add(labelPreis);
-        sidebarContainer.add(inputPreis);
-        sidebarContainer.add(labelProdukt);
-        sidebarContainer.add(inputProdukt);
+        
+        sidebarContainer.add(Done);
+        sidebarContainer.add(Bearbeiten);
+        sidebarContainer.add(Delete);
         
         // addNewContainer.add Section
         
-        addNewContainer.add(new JButton("11"));
-            
+        addNewContainer.add(labelAnzahl);
+        addNewContainer.add(inputAnzahl);
+        addNewContainer.add(labelPreis);
+        addNewContainer.add(inputPreis);
+        addNewContainer.add(labelProdukt);
+        addNewContainer.add(inputProdukt);
+        addNewContainer.add(addButton);
+        
+        // Test Settings
             
         tableContainer.setBackground(Color.magenta);
         sidebarContainer.setBackground(Color.GREEN);
         addNewContainer.setBackground(Color.LIGHT_GRAY);
+        
+        // Frame.setVisible(True);
         
         frame.setVisible(true);
     }
