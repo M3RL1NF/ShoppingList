@@ -9,7 +9,6 @@ public class View{
     private JPanel sidebarContainer;
     private JPanel addNewContainer;
     
-    
     private JScrollPane scrollPane;
     private JTable table;
     
@@ -23,12 +22,8 @@ public class View{
     private JTextField inputPreis;
     private JLabel labelProdukt;
     private JTextField inputProdukt;
-    private JButton addButton; 
+    private JButton addButton;
 
-    
-    
-    
-    
     private final String[] columnNames = {"Anzahl", "Produkt", "Preis", "Erledigt"};
         
     private final Object[][] items = {
@@ -57,8 +52,7 @@ public class View{
             // Table Container Items
             
             table = new JTable(items, columnNames);
-            
-            scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                         
         // Sidebar Container
             
@@ -69,28 +63,30 @@ public class View{
             // Sidebar Container Items
         
             Done = new JButton("Done");
+            Done.setPreferredSize(new Dimension(150,30));
+            
             Bearbeiten = new JButton("Bearbeiten");
+            Bearbeiten.setPreferredSize(new Dimension(150,30));
+            
             Delete = new JButton("Löschen");
+            Delete.setPreferredSize(new Dimension(150,30));
             
         // addNew Container 
             
         addNewContainer = new JPanel();
-        addNewContainer.setPreferredSize(new Dimension(100,175));
+        addNewContainer.setPreferredSize(new Dimension(100,100));
         addNewContainer.setVisible(true);
         
             // addNew Container Items
             
             labelAnzahl = new JLabel("Anzahl");
             inputAnzahl = new JTextField();
-            inputAnzahl.setBounds(100, 20, 165, 25);
 
             labelPreis = new JLabel("Preis");
             inputPreis = new JTextField();
-            inputPreis.setBounds(100, 20, 165, 25);
 
             labelProdukt = new JLabel("Produkt");
             inputProdukt = new JTextField();
-            inputProdukt.setBounds(100, 20, 165, 25);
             
             addButton = new JButton("Hinzufügen");
         
@@ -121,9 +117,7 @@ public class View{
         addNewContainer.add(addButton);
         
         // Test Settings
-            
-        tableContainer.setBackground(Color.magenta);
-        sidebarContainer.setBackground(Color.GREEN);
+
         addNewContainer.setBackground(Color.LIGHT_GRAY);
         
         // Frame.setVisible(True);
