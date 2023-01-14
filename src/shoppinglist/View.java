@@ -4,25 +4,20 @@ import javax.swing.*;
 public class View{
     
     private JFrame frame;
-    
     private JPanel tableContainer;
-    private JPanel sidebarContainer;
-    private JPanel addNewContainer;
-    
+    private JPanel functionContainer;
     private JScrollPane scrollPane;
     private JTable table;
-    
-    private JButton Done;
-    private JButton Bearbeiten;
-    private JButton Delete;
-    
-    private JLabel labelAnzahl;
-    private JTextField inputAnzahl;
-    private JLabel labelPreis;
-    private JTextField inputPreis;
-    private JLabel labelProdukt;
-    private JTextField inputProdukt;
+    private JButton doneButton;
+    private JButton changeButton;
+    private JButton removeButton;
     private JButton addButton;
+    
+    // Button Dimensionen
+    private int buttonHeight = 30;
+    private int buttonWidth = 150;
+    
+    // MockUp Daten
 
     private final String[] columnNames = {"Anzahl", "Produkt", "Preis", "Erledigt"};
         
@@ -46,7 +41,6 @@ public class View{
         
         tableContainer = new JPanel();
         tableContainer.setPreferredSize(new Dimension(100,175));
-        tableContainer.setVisible(true);
         tableContainer.setLayout(new BorderLayout());
         
             // Table Container Items
@@ -54,75 +48,46 @@ public class View{
             table = new JTable(items, columnNames);
             scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                         
-        // Sidebar Container
+        // functionContainer
             
-        sidebarContainer = new JPanel();
-        sidebarContainer.setPreferredSize(new Dimension(175,200));
-        sidebarContainer.setVisible(true);
+        functionContainer = new JPanel();
+        functionContainer.setPreferredSize(new Dimension(180,0));
+        functionContainer.setVisible(true);
         
-            // Sidebar Container Items
+            // functionContainer Items
         
-            Done = new JButton("Done");
-            Done.setPreferredSize(new Dimension(150,30));
-            
-            Bearbeiten = new JButton("Bearbeiten");
-            Bearbeiten.setPreferredSize(new Dimension(150,30));
-            
-            Delete = new JButton("Löschen");
-            Delete.setPreferredSize(new Dimension(150,30));
-            
-        // addNew Container 
-            
-        addNewContainer = new JPanel();
-        addNewContainer.setPreferredSize(new Dimension(100,100));
-        addNewContainer.setVisible(true);
-        
-            // addNew Container Items
-            
-            labelAnzahl = new JLabel("Anzahl");
-            inputAnzahl = new JTextField();
-
-            labelPreis = new JLabel("Preis");
-            inputPreis = new JTextField();
-
-            labelProdukt = new JLabel("Produkt");
-            inputProdukt = new JTextField();
+            doneButton = new JButton("Done");
+            doneButton.setPreferredSize(new Dimension(buttonWidth,buttonHeight));
             
             addButton = new JButton("Hinzufügen");
+            addButton.setPreferredSize(new Dimension(buttonWidth,buttonHeight));
+            
+            changeButton = new JButton("Bearbeiten");
+            changeButton.setPreferredSize(new Dimension(buttonWidth,buttonHeight));
+            
+            removeButton = new JButton("Löschen");
+            removeButton.setPreferredSize(new Dimension(buttonWidth,buttonHeight));
+            
         
         // frame.add Section
         
         frame.add(tableContainer, BorderLayout.CENTER);
-        frame.add(sidebarContainer, BorderLayout.EAST);
-        frame.add(addNewContainer, BorderLayout.SOUTH);
+        frame.add(functionContainer, BorderLayout.EAST);
         
         // tableContainer.add 
         
         tableContainer.add(scrollPane, BorderLayout.CENTER);
         
-        // sidebarContainer.add Section
+        // functionContainer.add
         
-        sidebarContainer.add(Done);
-        sidebarContainer.add(Bearbeiten);
-        sidebarContainer.add(Delete);
-        
-        // addNewContainer.add Section
-        
-        addNewContainer.add(labelAnzahl);
-        addNewContainer.add(inputAnzahl);
-        addNewContainer.add(labelPreis);
-        addNewContainer.add(inputPreis);
-        addNewContainer.add(labelProdukt);
-        addNewContainer.add(inputProdukt);
-        addNewContainer.add(addButton);
-        
-        // Test Settings
-
-        addNewContainer.setBackground(Color.LIGHT_GRAY);
+        functionContainer.add(doneButton);
+        functionContainer.add(addButton);
+        functionContainer.add(changeButton);
+        functionContainer.add(removeButton);
         
         // Frame.setVisible(True);
         
-        frame.setVisible(true);
+        frame.setVisible(true);  
     }
         
 }
