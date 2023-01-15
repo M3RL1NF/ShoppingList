@@ -1,23 +1,37 @@
 package shoppinglist;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
-public class ItemDAO {
+public class ItemDAO extends DAO {
     
-    public ItemDAO(String itemFile, boolean B) {
-        // itemFile = ItemFile.getFileName();
+    public ItemDAO(String fileName, boolean openForWrite) {
+        super(fileName, openForWrite);
     }
 
-    public void write() {
-        
+    public ItemDAO(DataInputStream in, DataOutputStream out) {
+        super(in, out);
     }
-    
-    public void read() {
-       
+
+    public void write(Object obj) throws IOException {
+        if (out != null) {
+            Item item = (Item) obj;
+            out.writeUTF(item.getName());
+            out.writeInt(item.getAnzahl());
+            out.writeBoolean(item.getErledigt());
+            out.writeDouble(item.getPreis());
+        }
     }
-    
-    public void close() {
-    
+
+    public void read(Object obj) throws IOException {
+        if (in != null) {
+            Item item = (Item) obj;
+            item.setName(in.readUTF());
+            item.setAnzahl(in.readInt());
+            item.setErledigt(in.readBoolean());
+            item.setPreis(in.readDouble());
+        }
     }
 
 }
