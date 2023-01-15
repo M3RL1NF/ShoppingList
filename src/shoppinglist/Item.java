@@ -9,16 +9,16 @@ public class Item {
     private int anzahl;
     private String name;
     private double preis;
-    private boolean erledigt = false;
+    private boolean erledigt;
     
     public Item() {}
     
     public Item(int anzahl, String name, double preis, boolean erledigt) {
-        id = id;
-        anzahl = anzahl;
-        name = name;
-        preis = preis;
-        erledigt = erledigt;
+        this.id = id;
+        this.anzahl = anzahl;
+        this.name = name;
+        this.preis = preis;
+        this.erledigt = erledigt;
     }
     
     public int getId() {

@@ -27,8 +27,9 @@ public class Controller {
     }
     
     public void initController() {
-        // this.writeItem(1, "Gemüse", 1.1, true);
-        // this.readItems();
+        this.writeItem(1, "gemüse", 1.1, true);
+        this.writeItem(1, "obst", 1.1, true);
+        this.readItems();
     }
     
     public void writeItem(int anzahl, String name, double preis, boolean erledigt) {
@@ -59,8 +60,8 @@ public class Controller {
         }
         dao.close();
         
-        // Daten für alle Studenten ausgeben:
         for (Item item : items.itemList) {
+            System.out.println(item.getId());
             System.out.println(item.getName());
             System.out.println(item.getAnzahl());
             System.out.println(item.getErledigt());

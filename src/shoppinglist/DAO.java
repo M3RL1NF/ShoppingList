@@ -11,12 +11,12 @@ public abstract class DAO {
     protected DataInputStream in;
     protected DataOutputStream out;
 
-    public DAO(String dateiName, boolean openForWrite) {
+    public DAO(String fileName, boolean openForWrite) {
         try {
             if (openForWrite) {
-                out = new DataOutputStream(new FileOutputStream(dateiName));
+                out = new DataOutputStream(new FileOutputStream(fileName));
             } else {
-                in = new DataInputStream(new FileInputStream(dateiName));
+                in = new DataInputStream(new FileInputStream(fileName));
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
