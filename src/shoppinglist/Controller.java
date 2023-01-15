@@ -11,9 +11,17 @@ public class Controller {
         initView();
     }
     
+    private final String[] columnNames = {"Anzahl", "Produkt", "Preis", "Erledigt"};
+        
+    private final Object[][] items = {
+        {1, "Banane", 0.56, false},
+        {2, "Apfel", 0.87, false},
+        {3, "Gurke", 0.30, false}
+    };
+    
     public void initView() {
         // get items from ItemDAO
-        // view.GUI();
+        view.mainGUI(items, columnNames);
     }
     
     public void initController() {
