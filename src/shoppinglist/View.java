@@ -16,7 +16,7 @@ public class View implements ActionListener{
     private JFrame mainFrame;
     private JPanel tableContainer;
     private JPanel functionContainer;
-    private JScrollPane scrollPane;
+    private JScrollPane tableScrollPane;
     private JTable table;
     private JButton doneButton;
     private JButton changeButton;
@@ -42,7 +42,7 @@ public class View implements ActionListener{
     // Table Container Items
             
             table = new JTable(items, columnNames);
-            scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            tableScrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                         
     // functionContainer
             
@@ -76,7 +76,7 @@ public class View implements ActionListener{
         
     // tableContainer.add 
         
-        tableContainer.add(scrollPane, BorderLayout.CENTER);
+        tableContainer.add(tableScrollPane, BorderLayout.CENTER);
         
     // functionContainer.add
         
@@ -106,31 +106,28 @@ public class View implements ActionListener{
         
         addframe = new JFrame();
         addframe.setTitle("Fügen sie einen Artikel hinzu!");
-        addframe.setSize(400,400);
+        addframe.setSize(500,500);
         
         addPanel = new JPanel();
-        addPanel.setLayout(new BoxLayout(addPanel, BoxLayout.Y_AXIS));
+        addframe.add(addPanel);
+        addPanel.setLayout(null);
+        
+        aL = new JLabel("Anzahl: ");
+        aL.setBounds(10,80,20,5);
+        addPanel.add(aL);
         
         a = new JTextArea();
+        a.setBounds(100,20,165,25);
+        addPanel.add(a);
+        
         b = new JTextArea();
         c = new JTextArea();
         
-        aL = new JLabel("Anzahl");
-        bL = new JLabel("Artikel");
-        cL = new JLabel("Preis");
+        bL = new JLabel("Artikel: ");
+        cL = new JLabel("Preis: ");
         
         addItemButton = new JButton("Hinzufügen");
-        
-        addPanel.add(aL);
-        addPanel.add(a);
-        addPanel.add(bL);
-        addPanel.add(b);
-        addPanel.add(cL);
-        addPanel.add(c);
-        addPanel.add(addItemButton);
-
-        addframe.add(addPanel);        
-        
+            
         addframe.setVisible(true);
         
     }
