@@ -1,11 +1,13 @@
 package shoppinglist;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Controller {
     
     private final String[] columnNames = {"Anzahl", "Produkt", "Preis", "Erledigt"};
-        
+    private ArrayList<Item> itemx = new ArrayList<>();
+    
     private final Object[][] items = {
         {1, "Banane", 0.56, false},
         {2, "Apfel", 0.87, false},
@@ -13,11 +15,11 @@ public class Controller {
     };
 
     public View view;
-    public ItemFile itemFile;
+    public Items itemList;
 
-    public Controller(View view, ItemFile itemFile) {
+    public Controller(View view, Items itemList) {
         this.view = view;
-        this.itemFile = itemFile;
+        this.itemList = itemList;
         initView();
     }
     
@@ -27,37 +29,41 @@ public class Controller {
     }
     
     public void initController() {
-        this.writeItem(1, "gemüse", 1.1, true);
-        this.writeItem(1, "obst", 1.1, true);
-        this.readItems();
+        this.writeItems(0, "name", 0, true);
+        this.writeItems(0, "name", 0, true);
+        this.writeItems(0, "name", 0, true);
+        
+        this.readItems(); 
     }
     
-    public void writeItem(int anzahl, String name, double preis, boolean erledigt) {
+    public void writeItems(int anzahl, String name, double preis, boolean erledigt) {
         Item item = new Item(anzahl, name, preis, erledigt);
-        Items items = new Items();
-        items.add(item);
         
-        ItemsDAO dao = new ItemsDAO(itemFile.getFileName(), true);
+        itemList.add(item);
+        
+        ItemsDAO dao = new ItemsDAO("items.dat", true, itemList, itemList.size());
         
         try {
-            dao.write(items);
+            dao.write(itemList);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         
         dao.close();
     }
-    
+ 
     // @todo change return type to object
-    public void readItems() {
+    public ArrayList<Item> readItems() {
         Items items = new Items();
-        ItemsDAO dao = new ItemsDAO(itemFile.getFileName(), false);
-
+        
+        ItemsDAO dao = new ItemsDAO("items.dat", false, itemList, itemList.size());
+        
         try {
             dao.read(items);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+        
         dao.close();
         
         for (Item item : items.itemList) {
@@ -67,6 +73,8 @@ public class Controller {
             System.out.println(item.getErledigt());
             System.out.println(item.getPreis());
         }
+        
+        return items.itemList;
     }
     
     public void handleView() {
