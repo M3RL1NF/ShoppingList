@@ -3,23 +3,16 @@ package shoppinglist;
 import java.io.IOException;
 
 public class ItemsDAO extends DAO {
-
-    public Items itemList;
-    private final int itemListSize;
     
-    public ItemsDAO(String fileName, boolean openForWrite, Items itemList, int itemListSize) {
+    public ItemsDAO(String fileName, boolean openForWrite) {
         super(fileName, openForWrite);
-        this.itemList = itemList;
-        this.itemListSize = itemListSize;
     }
 
     public void write(Object obj) throws IOException {
         if (out != null) {
             Items itemObject = (Items) obj;
             
-            System.out.println(itemList);
-            
-            out.writeInt(itemListSize);
+            out.writeInt(itemObject.itemList.size());
 
             ItemDAO itemDAO = new ItemDAO(null, out);
 
