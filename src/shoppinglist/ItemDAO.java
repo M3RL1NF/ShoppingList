@@ -28,7 +28,7 @@ public class ItemDAO extends DAO {
     public void read(Object obj) throws IOException {
         if (in != null) {
             Item item = (Item) obj;
-            item.setId();
+            item.setId(in.readInt());
             item.setAnzahl(in.readInt());
             item.setName(in.readUTF());
             item.setPreis(in.readDouble());

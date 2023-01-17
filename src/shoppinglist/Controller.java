@@ -23,12 +23,6 @@ public class Controller {
             boolean erledigt = this.getItems().itemList.get(i).getErledigt();
 
             Object[] data = {id, anzahl, name, preis, erledigt};
-            
-            System.out.println("Id" + this.getItems().itemList.get(i).getId());
-            System.out.println("Anzahl" + this.getItems().itemList.get(i).getAnzahl());
-            System.out.println("Name" + this.getItems().itemList.get(i).getName());
-            System.out.println("Preis" + this.getItems().itemList.get(i).getPreis());
-            System.out.println("Erledigt" + this.getItems().itemList.get(i).getErledigt());
 
             tableModel.addRow(data);
         }
@@ -85,12 +79,12 @@ public class Controller {
     
     // storing items in the items.dat via dao
     public void setItems(Items items) {
-        ItemsDAO dao = new ItemsDAO("items.json", true);
+        ItemsDAO dao = new ItemsDAO("items.dat", true);
         
         try {
             dao.write(items);
         } catch (IOException e) {
-            // System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
         
         dao.close();
@@ -101,12 +95,12 @@ public class Controller {
     public Items getItems() {
         Items items = new Items();
         
-        ItemsDAO dao = new ItemsDAO("items.json", false);
+        ItemsDAO dao = new ItemsDAO("items.dat", false);
         
         try {
             dao.read(items);
         } catch (IOException e) {
-            // System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
         
         dao.close();
