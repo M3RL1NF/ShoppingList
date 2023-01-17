@@ -94,16 +94,12 @@ public class View implements ActionListener{
     
     private JFrame addFrame;
     private JPanel addPanel;
-    
     private JTextArea addinputAnzahl;
     private JLabel addlabelAnzahl;
-    
     private JTextArea addinputName;
     private JLabel addlabelName;
-    
     private JTextArea addinputPreis;
     private JLabel addlabelPreis;
-    
     private JButton addItemButton;
     private JButton addcancelButton;
     
@@ -160,16 +156,12 @@ public class View implements ActionListener{
     
     private JFrame changeFrame;
     private JPanel changePanel;
-    
     private JTextArea changeinputAnzahl;
     private JLabel changelabelAnzahl;
-    
     private JTextArea changeinputName;
     private JLabel changelabelName;
-    
     private JTextArea changeinputPreis;
     private JLabel changelabelPreis;
-    
     private JButton changeItemButton;
     private JButton changecancelButton;
     
