@@ -1,6 +1,7 @@
 package shoppinglist;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 public class Controller {
@@ -46,12 +47,17 @@ public class Controller {
     // this function will be called from view 
     // adding a new item to the runtime object
     // currently successfully adds item to runtime arraylist
-    public void addItem(Items items, int anzahl, String name, double preis, boolean erledigt) {
+    public void addItem(int anzahl, String name, double preis, boolean erledigt) {
+        // DATEN VON VIEW + 1 neues ITEM
         Item item = new Item(anzahl, name, preis, erledigt);
-        items.add(item);
         
-        // storing item in items.dat
-        this.setItems(items);
+        this.getItems().itemList.add(item);
+        
+        System.out.println("ArrayList: " + this.getItems().itemList);
+        System.out.println("item: " + item);
+        
+        // SPEICHER NEUE ARRAY LISTE
+        // this.setItems(itemList);
     }
     
     // this function will be called from view
