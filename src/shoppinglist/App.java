@@ -5,12 +5,13 @@ public class App {
     // entrypoint
     public static void main(String[] args) {
         // @todo merge App.java and Controller.java to Controller.java
+        // this file should become Controller.java and hold all controller functions
+        // below class instances become obsolete
         View view = new View();
-        ItemFile itemFile = new ItemFile();
         
-        Controller controller = new Controller(view, itemFile);
+        Controller controller = new Controller(view);
         
-        controller.initController();
+        controller.initController(); 
     }
     
 }

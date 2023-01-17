@@ -3,7 +3,7 @@ package shoppinglist;
 import java.io.IOException;
 
 public class ItemsDAO extends DAO {
-
+    
     public ItemsDAO(String fileName, boolean openForWrite) {
         super(fileName, openForWrite);
     }
@@ -25,7 +25,7 @@ public class ItemsDAO extends DAO {
     public void read(Object obj) throws IOException {
         if (in != null) {
             Items itemObject = (Items) obj;
-
+            
             int itemCount = in.readInt();
 
             ItemDAO itemDAO = new ItemDAO(in, null);

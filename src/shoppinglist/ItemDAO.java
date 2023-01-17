@@ -17,6 +17,7 @@ public class ItemDAO extends DAO {
     public void write(Object obj) throws IOException {
         if (out != null) {
             Item item = (Item) obj;
+            out.writeInt(item.getId());
             out.writeUTF(item.getName());
             out.writeInt(item.getAnzahl());
             out.writeBoolean(item.getErledigt());
