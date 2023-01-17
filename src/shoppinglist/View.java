@@ -129,7 +129,6 @@ public class View implements ActionListener{
         addinputName = new JTextArea();
         addinputName.setBounds(50, 75, 193, 28);
         
-        
         addlabelPreis = new JLabel("Preis: ");
         addlabelPreis.setBounds(50, 103, 90, 20);
         
@@ -137,9 +136,11 @@ public class View implements ActionListener{
         addinputPreis.setBounds(50, 123, 193, 28);
         
         addItemButton = new JButton("Hinzufügen");
+        addItemButton.addActionListener(this);
         addItemButton.setBounds(50, 160, 193, 28);
         
         addcancelButton = new JButton("Abbrechen");
+        addcancelButton.addActionListener(this);
         addcancelButton.setBounds(50, 195, 193, 28);
         
         addPanel.add(addlabelAnzahl);
@@ -198,9 +199,11 @@ public class View implements ActionListener{
         changeinputPreis.setBounds(50, 123, 193, 28);
         
         changeItemButton = new JButton("Bearbeiten");
+        changeItemButton.addActionListener(this);
         changeItemButton.setBounds(50, 160, 193, 28);
         
         changecancelButton = new JButton("Abbrechen");
+        changecancelButton.addActionListener(this);
         changecancelButton.setBounds(50, 195, 193, 28);
         
         changePanel.add(changelabelAnzahl);
@@ -242,9 +245,27 @@ public class View implements ActionListener{
         }
         
     // addGUI ActionListerners
-
-    // changeGUI ActionListerners
+        if(button == addItemButton){
+            // remove()
+            System.out.println("Add Item");
+        }
         
+        if(button == addcancelButton){
+            // remove()
+            System.out.println("Cancel Add");
+        }
+        
+    // changeGUI ActionListerners
+
+        if(button == changeItemButton){
+            // remove()
+            System.out.println("Change Item");
+        }
+        
+        if(button == changecancelButton){
+            // remove()
+            System.out.println("Cancel Change");
+        }
         
     }        
 }
