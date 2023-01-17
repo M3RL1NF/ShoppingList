@@ -39,13 +39,12 @@ public class View implements ActionListener{
     // Table Container
         
         tableContainer = new JPanel();
-        tableContainer.setPreferredSize(new Dimension(100,175));
         tableContainer.setLayout(new BorderLayout());
         
     // Table Container Items
-            
-            table = new JTable(tableModel);
-            tableScrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        table = new JTable(tableModel); 
+        tableScrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                         
     // functionContainer
             
@@ -254,22 +253,25 @@ public class View implements ActionListener{
         if(button == addItemButton){
             controller.addItem(Integer.parseInt(addinputAnzahl.getText()), addinputName.getText(), Float.parseFloat(addinputPreis.getText()), false);
             System.out.println("Add Item");
+            addFrame.dispose();
         }
         
         if(button == addcancelButton){
             // remove()
             System.out.println("Cancel Add");
+            addFrame.dispose();
         }
         
     // changeGUI ActionListerners
     
         if(button == changeItemButton){
-            
+            changeFrame.dispose();
         }
         
         if(button == changecancelButton){
             // remove()
             System.out.println("Cancel Change");
+            changeFrame.dispose();
         }
         
     }    
