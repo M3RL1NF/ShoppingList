@@ -11,7 +11,7 @@ public class App {
         
         Controller controller = new Controller(view);
         
-        controller.initController(); 
+        controller.initController();
     }
     
 }

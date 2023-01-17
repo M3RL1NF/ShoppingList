@@ -22,6 +22,8 @@ public class View implements ActionListener{
     
     public void mainGUI(TableModel tableModel) {
         
+        System.out.println(tableModel);
+        
     // mainFrame
     
         mainFrame = new JFrame();
