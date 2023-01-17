@@ -8,33 +8,19 @@ public class Controller {
     // @change: (optional) outsource to own function ItemColumns.java
     private final String[] columnNames = {"Anzahl", "Produkt", "Preis", "Erledigt"};
     
-    // this is test data for the view
-    // items coming from items.dat need to be formatted into 2 dimensional object array for views jtable
-    private final Object[] items = 
-        {1, "Banane", 0.56, false}
-    ;
-    
     DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
 
     public void createTableModel(){
-        /*for (int i = 0; i < this.getItems().itemList.size(); i++){
-            
-                int anzahl = this.getItems().itemList.get(i).getAnzahl();
-                String name = this.getItems().itemList.get(i).getName();
-                double preis = this.getItems().itemList.get(i).getPreis();
-                boolean erledigt = this.getItems().itemList.get(i).getErledigt();
-            */
-            
-            int anzahl = 1;
-            String name = "Günni";
-            double preis = 2.0;
-            boolean erledigt = true;
+        for (int i = 0; i < this.getItems().itemList.size(); i++){
+            int anzahl = this.getItems().itemList.get(i).getAnzahl();
+            String name = this.getItems().itemList.get(i).getName();
+            double preis = this.getItems().itemList.get(i).getPreis();
+            boolean erledigt = this.getItems().itemList.get(i).getErledigt();
 
             Object[] data = {anzahl, name, preis, erledigt};
 
             tableModel.addRow(data);
-            tableModel.addRow(items);
-        // }
+        }
     }
     
     // view instance
@@ -54,6 +40,7 @@ public class Controller {
     
     public void initController() {
         System.out.println(this.getItems().itemList.get(0).getAnzahl());
+        this.createTableModel();
     }
     
     // this function will be called from view 
