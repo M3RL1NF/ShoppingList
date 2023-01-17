@@ -2,14 +2,11 @@ package shoppinglist;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.jar.Attributes;
+import javax.swing.table.TableModel;
 import javax.swing.*;
 
 public class View implements ActionListener{
-    
-// Button Dimensionen
-    
-    private int buttonHeight = 30;
-    private int buttonWidth = 150;
     
 // mainGUI Declarations
     
@@ -23,7 +20,7 @@ public class View implements ActionListener{
     private JButton removeButton;
     private JButton addButton;
     
-    public void mainGUI(Object[][] items, String[] columnNames) {
+    public void mainGUI(TableModel tableModel) {
         
     // mainFrame
     
@@ -41,7 +38,7 @@ public class View implements ActionListener{
         
     // Table Container Items
             
-            table = new JTable(items, columnNames);
+            table = new JTable(tableModel);
             tableScrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                         
     // functionContainer
@@ -54,19 +51,19 @@ public class View implements ActionListener{
         
             doneButton = new JButton("Done");
             doneButton.addActionListener(this);
-            doneButton.setPreferredSize(new Dimension(buttonWidth,buttonHeight));
+            doneButton.setPreferredSize(new Dimension(150,30));
             
             addButton = new JButton("Hinzufügen");
             addButton.addActionListener(this);
-            addButton.setPreferredSize(new Dimension(buttonWidth,buttonHeight));
+            addButton.setPreferredSize(new Dimension(150,30));
             
             changeButton = new JButton("Bearbeiten");
             changeButton.addActionListener(this);
-            changeButton.setPreferredSize(new Dimension(buttonWidth,buttonHeight));
+            changeButton.setPreferredSize(new Dimension(150,30));
             
             removeButton = new JButton("Löschen");
             removeButton.addActionListener(this);
-            removeButton.setPreferredSize(new Dimension(buttonWidth,buttonHeight));
+            removeButton.setPreferredSize(new Dimension(150,30));
             
         
     // frame.add Section
@@ -218,6 +215,8 @@ public class View implements ActionListener{
         changeFrame.setVisible(true);
     }
     
+// Action Listener
+    
     @Override
     public void actionPerformed(ActionEvent e){
         Object button = e.getSource();
@@ -245,8 +244,9 @@ public class View implements ActionListener{
         }
         
     // addGUI ActionListerners
+    
         if(button == addItemButton){
-            // remove()
+            dataTransfer(addinputAnzahl.getText(), addinputName.getText(), addinputPreis.getText());
             System.out.println("Add Item");
         }
         
@@ -256,9 +256,9 @@ public class View implements ActionListener{
         }
         
     // changeGUI ActionListerners
-
+    
         if(button == changeItemButton){
-            // remove()
+            dataTransfer(changeinputAnzahl.getText(), changeinputName.getText(), changeinputPreis.getText());
             System.out.println("Change Item");
         }
         
@@ -267,5 +267,14 @@ public class View implements ActionListener{
             System.out.println("Cancel Change");
         }
         
-    }        
+    }
+    
+    public Object dataTransfer(String anzahlAsString, String nameAsString, String preisAsString) {
+        int anzahl = Integer.parseInt(anzahlAsString);
+        String name = nameAsString;
+        double preis = Float.parseFloat(preisAsString);
+        
+        return new Object[]{anzahl, name, preis, false};
+    }
+    
 }
