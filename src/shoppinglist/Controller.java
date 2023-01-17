@@ -1,5 +1,6 @@
 package shoppinglist;
 
+import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -11,6 +12,8 @@ public class Controller {
     
     DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
 
+    public Items items;
+    
     public void createTableModel(){
         for (int i = 0; i < this.getItems().itemList.size(); i++){
             int anzahl = this.getItems().itemList.get(i).getAnzahl();
@@ -28,8 +31,9 @@ public class Controller {
     public View view;
 
     // controller constructor initiating view
-    public Controller(View view) {
+    public Controller(View view, Items items) {
         this.view = view;
+        this.items = items;
         initView();
     }
     
@@ -40,7 +44,6 @@ public class Controller {
     }
     
     public void initController() {
-        System.out.println(this.getItems().itemList.get(0).getAnzahl());
         this.createTableModel();
     }
     
@@ -48,16 +51,17 @@ public class Controller {
     // adding a new item to the runtime object
     // currently successfully adds item to runtime arraylist
     public void addItem(int anzahl, String name, double preis, boolean erledigt) {
+        System.out.println("hier");
         // DATEN VON VIEW + 1 neues ITEM
         Item item = new Item(anzahl, name, preis, erledigt);
         
-        this.getItems().itemList.add(item);
+        for (int i = 0; i < this.getItems().itemList.size(); i++) {
+            items.add(this.getItems().itemList.get(i));
+        }
         
-        System.out.println("ArrayList: " + this.getItems().itemList);
-        System.out.println("item: " + item);
-        
-        // SPEICHER NEUE ARRAY LISTE
-        // this.setItems(itemList);
+        items.add(item);
+       
+        this.setItems(items);
     }
     
     // this function will be called from view
@@ -79,7 +83,7 @@ public class Controller {
         try {
             dao.write(items);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
         }
         
         dao.close();
@@ -95,7 +99,7 @@ public class Controller {
         try {
             dao.read(items);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
         }
         
         dao.close();
