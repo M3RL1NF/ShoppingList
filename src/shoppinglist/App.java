@@ -9,7 +9,6 @@ public class App {
         // below class instances become obsolete
         View view = new View();
         Items items = new Items();
-        
         Controller controller = new Controller(view, items);
         
         controller.initController();

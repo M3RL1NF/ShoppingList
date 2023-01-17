@@ -7,7 +7,11 @@ import javax.swing.table.TableModel;
 import javax.swing.*;
 
 public class View implements ActionListener{
-    
+    private Controller controller;
+
+    public void initController(Controller controller) {
+        this.controller = controller;
+    }
 // mainGUI Declarations
     
     private JFrame mainFrame;
@@ -218,8 +222,6 @@ public class View implements ActionListener{
     }
     
 // Action Listener
-    
-    public Controller controller;
     
     @Override
     public void actionPerformed(ActionEvent e){
