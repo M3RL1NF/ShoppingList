@@ -1,8 +1,8 @@
 package shoppinglist;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.jar.Attributes;
 import javax.swing.table.TableModel;
 import javax.swing.*;
 
@@ -93,11 +93,11 @@ public class View implements ActionListener{
     
     private JFrame addFrame;
     private JPanel addPanel;
-    private JTextArea addinputAnzahl;
+    private JTextField addinputAnzahl;
     private JLabel addlabelAnzahl;
-    private JTextArea addinputName;
+    private JTextField addinputName;
     private JLabel addlabelName;
-    private JTextArea addinputPreis;
+    private JTextField addinputPreis;
     private JLabel addlabelPreis;
     private JButton addItemButton;
     private JButton addcancelButton;
@@ -119,19 +119,19 @@ public class View implements ActionListener{
         addlabelAnzahl = new JLabel("Anzahl: ");
         addlabelAnzahl.setBounds(50, 7, 70, 20);
         
-        addinputAnzahl = new JTextArea();
+        addinputAnzahl = new JTextField();
         addinputAnzahl.setBounds(50, 27, 193, 28);
         
         addlabelName = new JLabel("Artikel: ");
         addlabelName.setBounds(50, 55, 70, 20);
         
-        addinputName = new JTextArea();
+        addinputName = new JTextField();
         addinputName.setBounds(50, 75, 193, 28);
         
         addlabelPreis = new JLabel("Preis: ");
         addlabelPreis.setBounds(50, 103, 90, 20);
         
-        addinputPreis = new JTextArea();
+        addinputPreis = new JTextField();
         addinputPreis.setBounds(50, 123, 193, 28);
         
         addItemButton = new JButton("Hinzufügen");
@@ -156,11 +156,11 @@ public class View implements ActionListener{
     
     private JFrame changeFrame;
     private JPanel changePanel;
-    private JTextArea changeinputAnzahl;
+    private JTextField changeinputAnzahl;
     private JLabel changelabelAnzahl;
-    private JTextArea changeinputName;
+    private JTextField changeinputName;
     private JLabel changelabelName;
-    private JTextArea changeinputPreis;
+    private JTextField changeinputPreis;
     private JLabel changelabelPreis;
     private JButton changeItemButton;
     private JButton changecancelButton;
@@ -182,19 +182,19 @@ public class View implements ActionListener{
         changelabelAnzahl = new JLabel("Anzahl: ");
         changelabelAnzahl.setBounds(50, 7, 70, 20);
         
-        changeinputAnzahl = new JTextArea();
+        changeinputAnzahl = new JTextField();
         changeinputAnzahl.setBounds(50, 27, 193, 28);
         
         changelabelName = new JLabel("Artikel: ");
         changelabelName.setBounds(50, 55, 70, 20);
         
-        changeinputName = new JTextArea();
+        changeinputName = new JTextField();
         changeinputName.setBounds(50, 75, 193, 28);
         
         changelabelPreis = new JLabel("Preis: ");
         changelabelPreis.setBounds(50, 103, 90, 20);
         
-        changeinputPreis = new JTextArea();
+        changeinputPreis = new JTextField();
         changeinputPreis.setBounds(50, 123, 193, 28);
         
         changeItemButton = new JButton("Bearbeiten");
@@ -218,6 +218,8 @@ public class View implements ActionListener{
     }
     
 // Action Listener
+    
+    public Controller controller;
     
     @Override
     public void actionPerformed(ActionEvent e){
@@ -248,7 +250,7 @@ public class View implements ActionListener{
     // addGUI ActionListerners
     
         if(button == addItemButton){
-            dataTransfer(addinputAnzahl.getText(), addinputName.getText(), addinputPreis.getText());
+            controller.addItem(Integer.parseInt(addinputAnzahl.getText()), addinputName.getText(), Float.parseFloat(addinputPreis.getText()), false);
             System.out.println("Add Item");
         }
         
@@ -260,8 +262,7 @@ public class View implements ActionListener{
     // changeGUI ActionListerners
     
         if(button == changeItemButton){
-            dataTransfer(changeinputAnzahl.getText(), changeinputName.getText(), changeinputPreis.getText());
-            System.out.println("Change Item");
+            
         }
         
         if(button == changecancelButton){
@@ -269,14 +270,5 @@ public class View implements ActionListener{
             System.out.println("Cancel Change");
         }
         
-    }
-    
-    public Object dataTransfer(String anzahlAsString, String nameAsString, String preisAsString) {
-        int anzahl = Integer.parseInt(anzahlAsString);
-        String name = nameAsString;
-        double preis = Float.parseFloat(preisAsString);
-        
-        return new Object[]{anzahl, name, preis, false};
-    }
-    
+    }    
 }
