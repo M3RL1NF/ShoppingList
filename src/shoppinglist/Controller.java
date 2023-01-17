@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 public class Controller {
     // columnNames is currently hardcoded into the controller
     // @change: (optional) outsource to own function ItemColumns.java
-    private final String[] columnNames = {"Anzahl", "Produkt", "Preis", "Erledigt"};
+    private final String[] columnNames = {"Id", "Anzahl", "Name", "Preis", "Erledigt"};
     
     DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
 
@@ -16,12 +16,19 @@ public class Controller {
     
     public void createTableModel(){
         for (int i = 0; i < this.getItems().itemList.size(); i++){
+            int id = this.getItems().itemList.get(i).getId();
             int anzahl = this.getItems().itemList.get(i).getAnzahl();
             String name = this.getItems().itemList.get(i).getName();
             double preis = this.getItems().itemList.get(i).getPreis();
             boolean erledigt = this.getItems().itemList.get(i).getErledigt();
 
-            Object[] data = {anzahl, name, preis, erledigt};
+            Object[] data = {id, anzahl, name, preis, erledigt};
+            
+            System.out.println("Id" + this.getItems().itemList.get(i).getId());
+            System.out.println("Anzahl" + this.getItems().itemList.get(i).getAnzahl());
+            System.out.println("Name" + this.getItems().itemList.get(i).getName());
+            System.out.println("Preis" + this.getItems().itemList.get(i).getPreis());
+            System.out.println("Erledigt" + this.getItems().itemList.get(i).getErledigt());
 
             tableModel.addRow(data);
         }
@@ -51,8 +58,6 @@ public class Controller {
     // adding a new item to the runtime object
     // currently successfully adds item to runtime arraylist
     public void addItem(int anzahl, String name, double preis, boolean erledigt) {
-        System.out.println("hier");
-        // DATEN VON VIEW + 1 neues ITEM
         Item item = new Item(anzahl, name, preis, erledigt);
         
         for (int i = 0; i < this.getItems().itemList.size(); i++) {
@@ -60,8 +65,10 @@ public class Controller {
         }
         
         items.add(item);
-       
+        
         this.setItems(items);
+        
+        this.createTableModel();
     }
     
     // this function will be called from view
@@ -78,7 +85,7 @@ public class Controller {
     
     // storing items in the items.dat via dao
     public void setItems(Items items) {
-        ItemsDAO dao = new ItemsDAO("items.dat", true);
+        ItemsDAO dao = new ItemsDAO("items.json", true);
         
         try {
             dao.write(items);
@@ -94,7 +101,7 @@ public class Controller {
     public Items getItems() {
         Items items = new Items();
         
-        ItemsDAO dao = new ItemsDAO("items.dat", false);
+        ItemsDAO dao = new ItemsDAO("items.json", false);
         
         try {
             dao.read(items);

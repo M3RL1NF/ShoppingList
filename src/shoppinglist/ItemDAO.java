@@ -18,20 +18,21 @@ public class ItemDAO extends DAO {
         if (out != null) {
             Item item = (Item) obj;
             out.writeInt(item.getId());
-            out.writeUTF(item.getName());
             out.writeInt(item.getAnzahl());
-            out.writeBoolean(item.getErledigt());
+            out.writeUTF(item.getName());
             out.writeDouble(item.getPreis());
+            out.writeBoolean(item.getErledigt());
         }
     }
-
+    
     public void read(Object obj) throws IOException {
         if (in != null) {
             Item item = (Item) obj;
-            item.setName(in.readUTF());
+            item.setId();
             item.setAnzahl(in.readInt());
-            item.setErledigt(in.readBoolean());
+            item.setName(in.readUTF());
             item.setPreis(in.readDouble());
+            item.setErledigt(in.readBoolean());
         }
     }
 

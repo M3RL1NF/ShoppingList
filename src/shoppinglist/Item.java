@@ -29,14 +29,6 @@ public class Item {
         this.id = atomic_id.incrementAndGet();
     }
     
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getAnzahl() {
         return anzahl;
     }
@@ -44,7 +36,23 @@ public class Item {
     public void setAnzahl(int anzahl) {
         this.anzahl = anzahl;
     }
+    
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public double getPreis() {
+        return preis;
+    }
+
+    public void setPreis(double preis) {
+        this.preis = preis;
+    }
+    
     public boolean getErledigt() {
         return erledigt;
     }
@@ -53,11 +61,4 @@ public class Item {
         this.erledigt = istErledigt;
     }
 
-    public double getPreis() {
-        return preis;
-    }
-
-    public void setPreis(double preis) {
-        this.preis = preis;
-    }
 }
