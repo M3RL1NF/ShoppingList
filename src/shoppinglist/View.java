@@ -188,19 +188,19 @@ public class View implements ActionListener{
         changelabelAnzahl = new JLabel("Anzahl: ");
         changelabelAnzahl.setBounds(50, 7, 70, 20);
         
-        changeinputAnzahl = new JTextField();
+        changeinputAnzahl = new JTextField(table.getModel().getValueAt(table.getSelectedRow(),1).toString());
         changeinputAnzahl.setBounds(50, 27, 193, 28);
         
         changelabelName = new JLabel("Artikel: ");
         changelabelName.setBounds(50, 55, 70, 20);
         
-        changeinputName = new JTextField();
+        changeinputName = new JTextField(table.getModel().getValueAt(table.getSelectedRow(),2).toString());
         changeinputName.setBounds(50, 75, 193, 28);
         
         changelabelPreis = new JLabel("Preis: ");
         changelabelPreis.setBounds(50, 103, 90, 20);
         
-        changeinputPreis = new JTextField();
+        changeinputPreis = new JTextField(table.getModel().getValueAt(table.getSelectedRow(),3).toString());
         changeinputPreis.setBounds(50, 123, 193, 28);
         
         changeItemButton = new JButton("Bearbeiten");
@@ -232,48 +232,45 @@ public class View implements ActionListener{
     // mainGUI ActionListerners
         
         if(button == doneButton){
-            // done()
-            System.out.println("DONE");
+            int id = (Integer) table.getModel().getValueAt(table.getSelectedRow(), 0);
+            int anzahl = (Integer) table.getModel().getValueAt(table.getSelectedRow(), 1);
+            String name = (String) table.getModel().getValueAt(table.getSelectedRow(), 2); 
+            Double preis = (Double) table.getModel().getValueAt(table.getSelectedRow(), 3);
+            
+            controller.updateItem(id, anzahl, name, preis, true);
         }
         
         if(button == addButton){
             addGUI();
-            System.out.println("ADD");
         }
         
         if(button == changeButton){
             changeGUI();
-            System.out.println("CHANGE");
         }
         
         if(button == removeButton){
-            // remove()
-            System.out.println("REMOVE");
+            controller.deleteItem((Integer) table.getModel().getValueAt(table.getSelectedRow(), 0));
         }
         
     // addGUI ActionListerners
     
         if(button == addItemButton){
-            controller.addItem(Integer.parseInt(addinputAnzahl.getText()), addinputName.getText(), Float.parseFloat(addinputPreis.getText()), false);
-            System.out.println("Add Item");
+            controller.addItem(Integer.parseInt(addinputAnzahl.getText()), addinputName.getText(), Double.parseDouble(addinputPreis.getText()), false);
             addFrame.dispose();
         }
         
         if(button == addcancelButton){
-            // remove()
-            System.out.println("Cancel Add");
             addFrame.dispose();
         }
         
     // changeGUI ActionListerners
     
         if(button == changeItemButton){
+            controller.updateItem((Integer) table.getModel().getValueAt(table.getSelectedRow(), 0), Integer.parseInt(changeinputAnzahl.getText()), changeinputName.getText(), Double.parseDouble(changeinputPreis.getText()), false);
             changeFrame.dispose();
         }
         
         if(button == changecancelButton){
-            // remove()
-            System.out.println("Cancel Change");
             changeFrame.dispose();
         }
         

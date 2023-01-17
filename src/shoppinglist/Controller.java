@@ -53,28 +53,24 @@ public class Controller {
     // currently successfully adds item to runtime arraylist
     public void addItem(int anzahl, String name, double preis, boolean erledigt) {
         Item item = new Item(anzahl, name, preis, erledigt);
-        
         for (int i = 0; i < this.getItems().itemList.size(); i++) {
             items.add(this.getItems().itemList.get(i));
         }
-        
         items.add(item);
-        
         this.setItems(items);
-        
         this.createTableModel();
     }
     
     // this function will be called from view
     // deleting an item from the runtime object
     public void deleteItem(int id) {
-        // delete item
+        System.out.println("Delete the Item with the ID: "+ id); // delete item
     }
     
     // this function will be called from view
     // updating an item from the runtime object
     public void updateItem(int id, int anzahl, String name, double preis, boolean erledigt) {
-        // update item
+         System.out.println(id + anzahl + name + preis + erledigt);        
     }
     
     // storing items in the items.dat via dao
