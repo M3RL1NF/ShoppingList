@@ -14,7 +14,7 @@ public class Item {
     public Item() {}
     
     public Item(int anzahl, String name, double preis, boolean erledigt) {
-        this.id = id;
+        this.id = atomic_id.incrementAndGet();
         this.anzahl = anzahl;
         this.name = name;
         this.preis = preis;
@@ -26,7 +26,7 @@ public class Item {
     }
     
     public void setId(int id) {
-        this.id = atomic_id.incrementAndGet();
+        this.id = id;
     }
     
     public int getAnzahl() {

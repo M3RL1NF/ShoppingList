@@ -1,13 +1,9 @@
 package shoppinglist;
 
-import java.awt.event.ItemListener;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
-public class Controller {
-    // columnNames is currently hardcoded into the controller
-    // @change: (optional) outsource to own function ItemColumns.java
+public final class Controller {
     private final String[] columnNames = {"Id", "Anzahl", "Name", "Preis", "Erledigt"};
     
     DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
@@ -15,65 +11,64 @@ public class Controller {
     public Items items;
     
     public void createTableModel(){
-        for (int i = 0; i < this.getItems().itemList.size(); i++){
-            int id = this.getItems().itemList.get(i).getId();
-            int anzahl = this.getItems().itemList.get(i).getAnzahl();
-            String name = this.getItems().itemList.get(i).getName();
-            double preis = this.getItems().itemList.get(i).getPreis();
-            boolean erledigt = this.getItems().itemList.get(i).getErledigt();
+        tableModel.setRowCount(0);
+        
+        for (int i = 0; i < items.itemList.size(); i++){
+            int id = items.itemList.get(i).getId();
+            int anzahl = items.itemList.get(i).getAnzahl();
+            String name = items.itemList.get(i).getName();
+            double preis = items.itemList.get(i).getPreis();
+            boolean erledigt = items.itemList.get(i).getErledigt();
 
             Object[] data = {id, anzahl, name, preis, erledigt};
-
+            
+            System.out.println("ID items.itemList: " + items.itemList.get(i).getId());
+            
             tableModel.addRow(data);
         }
     }
     
-    // view instance
     public View view;
 
-    // controller constructor initiating view
     public Controller(View view, Items items) {
         this.view = view;
         this.items = items;
         initView();
     }
     
-    // load view
     public void initView() {
-        // using test data for view
         view.mainGUI(tableModel);
     }
     
     public void initController() {
+        this.getItems();
         this.createTableModel();
     }
     
-    // this function will be called from view 
-    // adding a new item to the runtime object
-    // currently successfully adds item to runtime arraylist
     public void addItem(int anzahl, String name, double preis, boolean erledigt) {
         Item item = new Item(anzahl, name, preis, erledigt);
-        for (int i = 0; i < this.getItems().itemList.size(); i++) {
-            items.add(this.getItems().itemList.get(i));
-        }
+        
+        System.out.println("ID addItem: " + item.getId());
+        
         items.add(item);
+        
         this.setItems(items);
-        this.createTableModel();
+        
+        this.initController();
     }
     
-    // this function will be called from view
-    // deleting an item from the runtime object
     public void deleteItem(int id) {
-        System.out.println("Delete the Item with the ID: "+ id); // delete item
+        items.delete(id);
+        this.setItems(items);
+        this.initController();
     }
     
-    // this function will be called from view
-    // updating an item from the runtime object
     public void updateItem(int id, int anzahl, String name, double preis, boolean erledigt) {
-         System.out.println(id + anzahl + name + preis + erledigt);        
+        items.update(id, anzahl, name, preis, erledigt);
+        this.setItems(items);
+        this.initController();
     }
     
-    // storing items in the items.dat via dao
     public void setItems(Items items) {
         ItemsDAO dao = new ItemsDAO("items.dat", true);
         
@@ -86,18 +81,19 @@ public class Controller {
         dao.close();
     }
  
-    // retrieving item from items.dat via dao
-    // retrieve with items.itemList.get(0).getPreis()
     public Items getItems() {
-        Items items = new Items();
+        Items itemList = new Items();
         
         ItemsDAO dao = new ItemsDAO("items.dat", false);
         
         try {
-            dao.read(items);
+            dao.read(itemList);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+        
+        items.itemList.clear();
+        items = itemList;
         
         dao.close();
          
