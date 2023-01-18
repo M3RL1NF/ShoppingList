@@ -8,7 +8,6 @@ import javax.swing.BorderFactory;
 import javax.swing.table.TableModel;
 import javax.swing.*;
 import java.awt.Font;
-import javax.accessibility.AccessibleRole;
 
 public class View implements ActionListener{
     private Controller controller;
