@@ -49,6 +49,21 @@ public class View implements ActionListener{
         table.getColumnModel().getColumn(0).setWidth(0);
         table.getColumnModel().getColumn(0).setMinWidth(0);
         table.getColumnModel().getColumn(0).setMaxWidth(0);
+        table.setRowHeight(30);
+        table.getColumnModel().getColumn(1).setPreferredWidth(30);
+        table.getColumnModel().getColumn(2).setPreferredWidth(220);
+        table.getColumnModel().getColumn(3).setPreferredWidth(100);
+        table.setShowVerticalLines(false);
+        table.getTableHeader().setReorderingAllowed(false);
+        table.getColumnModel().setColumnMargin(0);
+        table.getColumnModel().getColumn(2).setPreferredWidth(220);
+        table.getColumnModel().getColumn(3).setPreferredWidth(100);
+        table.setDefaultEditor(Object.class, null);
+        
+        
+        
+        
+        
         tableScrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                         
     // functionContainer
