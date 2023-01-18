@@ -60,10 +60,6 @@ public class View implements ActionListener{
         table.getColumnModel().getColumn(3).setPreferredWidth(100);
         table.setDefaultEditor(Object.class, null);
         
-        
-        
-        
-        
         tableScrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                         
     // functionContainer
@@ -74,7 +70,7 @@ public class View implements ActionListener{
         
     // functionContainer Items
         
-            doneButton = new JButton("Done");
+            doneButton = new JButton("Erledigt");
             doneButton.addActionListener(this);
             doneButton.setPreferredSize(new Dimension(150,30));
             
@@ -256,7 +252,7 @@ public class View implements ActionListener{
             
             controller.updateItem(id, anzahl, name, preis, true);
         }
-        
+            
         if(button == addButton){
             addGUI();
         }
