@@ -3,6 +3,7 @@ package shoppinglist;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
 import javax.swing.table.TableModel;
 import javax.swing.*;
 
@@ -39,6 +40,7 @@ public class View implements ActionListener{
     // Table Container
         
         tableContainer = new JPanel();
+        tableContainer.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 0));
         tableContainer.setLayout(new BorderLayout());
         
     // Table Container Items
@@ -52,7 +54,7 @@ public class View implements ActionListener{
     // functionContainer
             
         functionContainer = new JPanel();
-        functionContainer.setPreferredSize(new Dimension(180,0));
+        functionContainer.setPreferredSize(new Dimension(160,0));
         functionContainer.setVisible(true);
         
     // functionContainer Items
