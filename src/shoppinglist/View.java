@@ -226,7 +226,7 @@ public class View implements ActionListener{
         changeinputPreis = new JTextField(table.getModel().getValueAt(table.getSelectedRow(),3).toString());
         changeinputPreis.setBounds(50, 123, 193, 28);
         
-        changeItemButton = new JButton("Bearbeiten");
+        changeItemButton = new JButton("Speichern");
         changeItemButton.addActionListener(this);
         changeItemButton.setBounds(50, 160, 193, 28);
         
@@ -263,12 +263,7 @@ public class View implements ActionListener{
                 String name = (String) table.getModel().getValueAt(table.getSelectedRow(), 2); 
                 Double preis = (Double) table.getModel().getValueAt(table.getSelectedRow(), 3);
                 boolean done = (boolean) table.getModel().getValueAt(table.getSelectedRow(), 4);
-
-                if(done == false){
-                    controller.updateItem(id, anzahl, name, preis, true);
-                } else if(done == true){
-                    controller.updateItem(id, anzahl, name, preis, false);
-                }
+                controller.updateItem(id, anzahl, name, preis, !done);
             }
         }
             
@@ -292,7 +287,7 @@ public class View implements ActionListener{
             if(table.getSelectedRow() == -1){
                 JOptionPane.showMessageDialog(mainFrame, "Bitte wählen sie einen Artikel aus!");
             } else {
-            controller.deleteItem((Integer) table.getModel().getValueAt(table.getSelectedRow(), 0));
+                controller.deleteItem((Integer) table.getModel().getValueAt(table.getSelectedRow(), 0));
             }
         }
         
@@ -310,7 +305,12 @@ public class View implements ActionListener{
     // changeGUI ActionListerners
     
         if(button == changeItemButton){
-            controller.updateItem((Integer) table.getModel().getValueAt(table.getSelectedRow(), 0), Integer.parseInt(changeinputAnzahl.getText()), changeinputName.getText(), Double.parseDouble(changeinputPreis.getText()), false);
+            int id = (Integer) table.getModel().getValueAt(table.getSelectedRow(), 0);
+            int anzahl = (Integer) table.getModel().getValueAt(table.getSelectedRow(), 1);
+            String name = (String) table.getModel().getValueAt(table.getSelectedRow(), 2); 
+            Double preis = (Double) table.getModel().getValueAt(table.getSelectedRow(), 3);
+            boolean done = (boolean) table.getModel().getValueAt(table.getSelectedRow(), 4);
+            controller.updateItem(id, anzahl, name, preis, done);
             changeFrame.dispose();
         }
         
