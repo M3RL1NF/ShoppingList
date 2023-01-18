@@ -14,9 +14,16 @@ public class ItemDAO extends DAO {
         super(in, out);
     }
 
+    /**
+     *
+     * @param obj
+     * @throws IOException
+     */
+    @Override
     public void write(Object obj) throws IOException {
         if (out != null) {
             Item item = (Item) obj;
+            System.out.println("ItemDAO write" + item.getId());
             out.writeInt(item.getId());
             out.writeInt(item.getAnzahl());
             out.writeUTF(item.getName());
@@ -25,15 +32,17 @@ public class ItemDAO extends DAO {
         }
     }
     
+    @Override
     public void read(Object obj) throws IOException {
         if (in != null) {
-            Item item = (Item) obj;
+            Item item = (Item) obj;  
             item.setId(in.readInt());
             item.setAnzahl(in.readInt());
             item.setName(in.readUTF());
             item.setPreis(in.readDouble());
             item.setErledigt(in.readBoolean());
+                        
+            // System.out.println("ItemDAO read" + in.readInt());
         }
     }
-
 }

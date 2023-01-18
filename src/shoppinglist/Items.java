@@ -9,4 +9,23 @@ public class Items {
     public void add(Item item) {
         itemList.add(item);
     }
+    
+    public void update(int id, int anzahl, String name, double preis, boolean erledigt) {
+        for (int i=0; i < itemList.size(); i++) {
+            if (itemList.get(i).getId() == id) {
+                itemList.get(i).setAnzahl(anzahl);
+                itemList.get(i).setName(name);
+                itemList.get(i).setPreis(preis);
+                itemList.get(i).setErledigt(erledigt);
+            }
+        }
+    }
+    
+    public void delete(int id) {
+        for (int i=0; i < itemList.size(); i++) {
+            if (itemList.get(i).getId() == id) {
+                itemList.remove(i);
+            }
+        }
+    }
 }
