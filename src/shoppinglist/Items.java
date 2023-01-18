@@ -6,6 +6,14 @@ public class Items {
 
     ArrayList<Item> itemList = new ArrayList<>();
 
+    public int setId() {
+        if (!itemList.isEmpty()) {
+            return itemList.get(itemList.size() - 1).getId() + 1;
+        } else {
+           return 1;
+        }
+    }
+    
     public void add(Item item) {
         itemList.add(item);
     }

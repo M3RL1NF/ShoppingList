@@ -46,9 +46,9 @@ public class View implements ActionListener{
     // Table Container Items
 
         table = new JTable(tableModel);
-        table.getColumnModel().getColumn(0).setWidth(0);
-        table.getColumnModel().getColumn(0).setMinWidth(0);
-        table.getColumnModel().getColumn(0).setMaxWidth(0);
+        //table.getColumnModel().getColumn(0).setWidth(0);
+        //table.getColumnModel().getColumn(0).setMinWidth(0);
+        //table.getColumnModel().getColumn(0).setMaxWidth(0);
         table.getTableHeader().setReorderingAllowed(false);
         table.setDefaultEditor(Object.class, null);
         table.setRowHeight(40);
