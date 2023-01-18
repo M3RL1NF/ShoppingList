@@ -268,11 +268,7 @@ public class View implements ActionListener{
         }
             
         if(button == addButton){
-            if(table.getSelectedRow() == -1){
-                JOptionPane.showMessageDialog(mainFrame, "Bitte wählen sie einen Artikel aus!");
-            } else {
-                addGUI();
-            }
+            addGUI();
         }
         
         if(button == changeButton){
@@ -317,6 +313,5 @@ public class View implements ActionListener{
         if(button == changecancelButton){
             changeFrame.dispose();
         }
-        
     }    
 }
