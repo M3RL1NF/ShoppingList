@@ -1,10 +1,7 @@
 package shoppinglist;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class Item {
-    
-    private static final AtomicInteger atomic_id = new AtomicInteger(0); 
+ 
     private int id;
     private int anzahl;
     private String name;
@@ -13,8 +10,8 @@ public class Item {
     
     public Item() {}
     
-    public Item(int anzahl, String name, double preis, boolean erledigt) {
-        this.id = atomic_id.incrementAndGet();
+    public Item(int id, int anzahl, String name, double preis, boolean erledigt) {
+        this.id = id;
         this.anzahl = anzahl;
         this.name = name;
         this.preis = preis;

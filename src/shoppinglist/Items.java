@@ -10,6 +10,14 @@ public class Items {
         itemList.add(item);
     }
     
+    public int setId() {
+        if (!itemList.isEmpty()) {
+            return itemList.get(itemList.size() - 1).getId() + 1;
+        } else {
+           return 1;
+        }
+    }
+    
     public void update(int id, int anzahl, String name, double preis, boolean erledigt) {
         for (int i=0; i < itemList.size(); i++) {
             if (itemList.get(i).getId() == id) {

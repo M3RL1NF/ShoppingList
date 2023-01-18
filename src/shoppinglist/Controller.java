@@ -22,8 +22,6 @@ public final class Controller {
 
             Object[] data = {id, anzahl, name, preis, erledigt};
             
-            System.out.println("ID items.itemList: " + items.itemList.get(i).getId());
-            
             tableModel.addRow(data);
         }
     }
@@ -46,9 +44,7 @@ public final class Controller {
     }
     
     public void addItem(int anzahl, String name, double preis, boolean erledigt) {
-        Item item = new Item(anzahl, name, preis, erledigt);
-        
-        System.out.println("ID addItem: " + item.getId());
+        Item item = new Item(items.setId(), anzahl, name, preis, erledigt);
         
         items.add(item);
         
