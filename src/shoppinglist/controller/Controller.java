@@ -1,5 +1,10 @@
-package shoppinglist;
+package shoppinglist.controller;
 
+import shoppinglist.view.*;
+
+import shoppinglist.model.Items;
+import shoppinglist.model.Item;
+import shoppinglist.model.ItemsDAO;
 import java.io.IOException;
 import javax.swing.table.DefaultTableModel;
 

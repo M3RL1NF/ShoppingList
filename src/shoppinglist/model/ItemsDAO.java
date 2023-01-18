@@ -1,4 +1,4 @@
-package shoppinglist;
+package shoppinglist.model;
 
 import java.io.IOException;
 

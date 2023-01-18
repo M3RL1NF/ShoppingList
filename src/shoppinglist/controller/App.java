@@ -1,4 +1,8 @@
-package shoppinglist;
+package shoppinglist.controller;
+
+import shoppinglist.view.*;
+
+import shoppinglist.model.Items;
 
 public class App {
     

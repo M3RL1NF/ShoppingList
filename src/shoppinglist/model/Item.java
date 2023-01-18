@@ -1,4 +1,4 @@
-package shoppinglist;
+package shoppinglist.model;
 
 public class Item {
  

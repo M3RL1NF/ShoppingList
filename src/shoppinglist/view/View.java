@@ -1,5 +1,6 @@
-package shoppinglist;
+package shoppinglist.view;
 
+import shoppinglist.controller.Controller;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
