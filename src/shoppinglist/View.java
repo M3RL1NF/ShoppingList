@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.table.TableModel;
 import javax.swing.*;
+import java.awt.Font;
+import javax.accessibility.AccessibleRole;
 
 public class View implements ActionListener{
     private Controller controller;
@@ -26,9 +28,7 @@ public class View implements ActionListener{
     private JButton addButton;
     
     public void mainGUI(TableModel tableModel) {
-        
-        System.out.println(tableModel);
-        
+
     // mainFrame
     
         mainFrame = new JFrame();
@@ -49,16 +49,26 @@ public class View implements ActionListener{
         table.getColumnModel().getColumn(0).setWidth(0);
         table.getColumnModel().getColumn(0).setMinWidth(0);
         table.getColumnModel().getColumn(0).setMaxWidth(0);
-        table.setRowHeight(30);
-        table.getColumnModel().getColumn(1).setPreferredWidth(30);
-        table.getColumnModel().getColumn(2).setPreferredWidth(220);
-        table.getColumnModel().getColumn(3).setPreferredWidth(100);
-        table.setShowVerticalLines(false);
         table.getTableHeader().setReorderingAllowed(false);
-        table.getColumnModel().setColumnMargin(0);
-        table.getColumnModel().getColumn(2).setPreferredWidth(220);
-        table.getColumnModel().getColumn(3).setPreferredWidth(100);
         table.setDefaultEditor(Object.class, null);
+        table.setRowHeight(40);
+        table.setShowVerticalLines(false);
+        table.setFont(new Font(Font.DIALOG,  Font.ITALIC, 15));
+        table.getColumnModel().setColumnMargin(0);
+        
+        
+        // table.getColumnModel().getColumn(1).setPreferredWidth(30);
+        // table.getColumnModel().getColumn(2).setPreferredWidth(220);
+        // table.getColumnModel().getColumn(3).setPreferredWidth(100);
+        // 
+        
+        // 
+        
+
+        // table.getColumnModel().getColumn(2).setPreferredWidth(220);
+        // table.getColumnModel().getColumn(3).setPreferredWidth(100);
+        
+        // 
         
         tableScrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                         
@@ -245,24 +255,45 @@ public class View implements ActionListener{
     // mainGUI ActionListerners
         
         if(button == doneButton){
-            int id = (Integer) table.getModel().getValueAt(table.getSelectedRow(), 0);
-            int anzahl = (Integer) table.getModel().getValueAt(table.getSelectedRow(), 1);
-            String name = (String) table.getModel().getValueAt(table.getSelectedRow(), 2); 
-            Double preis = (Double) table.getModel().getValueAt(table.getSelectedRow(), 3);
-            
-            controller.updateItem(id, anzahl, name, preis, true);
+            if(table.getSelectedRow() == -1){
+                JOptionPane.showMessageDialog(mainFrame, "Bitte wählen sie einen Artikel aus!");
+            } else {
+                int id = (Integer) table.getModel().getValueAt(table.getSelectedRow(), 0);
+                int anzahl = (Integer) table.getModel().getValueAt(table.getSelectedRow(), 1);
+                String name = (String) table.getModel().getValueAt(table.getSelectedRow(), 2); 
+                Double preis = (Double) table.getModel().getValueAt(table.getSelectedRow(), 3);
+                boolean done = (boolean) table.getModel().getValueAt(table.getSelectedRow(), 4);
+
+                if(done == false){
+                    controller.updateItem(id, anzahl, name, preis, true);
+                } else if(done == true){
+                    controller.updateItem(id, anzahl, name, preis, false);
+                }
+            }
         }
             
         if(button == addButton){
-            addGUI();
+            if(table.getSelectedRow() == -1){
+                JOptionPane.showMessageDialog(mainFrame, "Bitte wählen sie einen Artikel aus!");
+            } else {
+                addGUI();
+            }
         }
         
         if(button == changeButton){
-            changeGUI();
+            if(table.getSelectedRow() == -1){
+                JOptionPane.showMessageDialog(mainFrame, "Bitte wählen sie einen Artikel aus!");
+            } else {
+                changeGUI();
+            }
         }
         
         if(button == removeButton){
+            if(table.getSelectedRow() == -1){
+                JOptionPane.showMessageDialog(mainFrame, "Bitte wählen sie einen Artikel aus!");
+            } else {
             controller.deleteItem((Integer) table.getModel().getValueAt(table.getSelectedRow(), 0));
+            }
         }
         
     // addGUI ActionListerners
