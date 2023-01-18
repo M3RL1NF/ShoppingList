@@ -1,21 +1,22 @@
 package shoppinglist.view;
 
-import shoppinglist.controller.Controller;
+import shoppinglist.controller.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.table.TableModel;
 import javax.swing.*;
-import java.awt.Font;
 
 public class View implements ActionListener{
-    private Controller controller;
+    public Controller controller;
 
     public void initController(Controller controller) {
         this.controller = controller;
     }
-// mainGUI Declarations
+    
+    // mainGUI Declarations
     
     private JFrame mainFrame;
     private JPanel tableContainer;

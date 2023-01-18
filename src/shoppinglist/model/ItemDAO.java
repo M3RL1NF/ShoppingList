@@ -5,15 +5,17 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 public class ItemDAO extends DAO {
-    
+    // set input and output stream
     public ItemDAO(String fileName, boolean openForWrite) {
         super(fileName, openForWrite);
     }
 
+    // set input and output stream
     public ItemDAO(DataInputStream in, DataOutputStream out) {
         super(in, out);
     }
 
+    // write item 
     @Override
     public void write(Object obj) throws IOException {
         if (out != null) {
@@ -26,6 +28,7 @@ public class ItemDAO extends DAO {
         }
     }
     
+    // read item
     @Override
     public void read(Object obj) throws IOException {
         if (in != null) {

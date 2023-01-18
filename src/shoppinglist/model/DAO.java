@@ -7,10 +7,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public abstract class DAO {
-
     protected DataInputStream in;
     protected DataOutputStream out;
 
+    // set data read and write rules for file interaction
     public DAO(String fileName, boolean openForWrite) {
         try {
             if (openForWrite) {
@@ -23,11 +23,13 @@ public abstract class DAO {
         }
     }
 
+    // set data input and output streams
     public DAO(DataInputStream in, DataOutputStream out) {
         this.in = in;
         this.out = out;
     }
 
+    // close reader and writer
     public void close() {
         try {
             if (in != null) {
@@ -40,8 +42,9 @@ public abstract class DAO {
         }
     }
 
+    // create write abstract function
     public abstract void write(Object obj) throws IOException;
 
+    // create read abstract function
     public abstract void read(Object obj) throws IOException;
-
 }

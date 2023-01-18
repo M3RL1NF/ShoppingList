@@ -1,15 +1,16 @@
 package shoppinglist.model;
 
 public class Item {
- 
     private int id;
     private int anzahl;
     private String name;
     private double preis;
     private boolean erledigt;
     
+    // allows reading items from file
     public Item() {}
     
+    // create new Item
     public Item(int id, int anzahl, String name, double preis, boolean erledigt) {
         this.id = id;
         this.anzahl = anzahl;
@@ -18,6 +19,7 @@ public class Item {
         this.erledigt = erledigt;
     }
     
+    // create getter and setter functions for item attributes
     public int getId() {
         return id;
     }
@@ -57,5 +59,4 @@ public class Item {
     public void setErledigt(boolean istErledigt) {
         this.erledigt = istErledigt;
     }
-
 }

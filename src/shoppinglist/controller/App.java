@@ -1,23 +1,19 @@
 package shoppinglist.controller;
 
 import shoppinglist.view.*;
-
-import shoppinglist.model.Items;
+import shoppinglist.model.*;
 
 public class App {
-    
-    // entrypoint
     public static void main(String[] args) {
-        // @todo merge App.java and Controller.java to Controller.java
-        // this file should become Controller.java and hold all controller functions
-        // below class instances become obsolete
-        View view = new View();
+        View view   = new View();
         Items items = new Items();
+        
         Controller controller = new Controller(view, items);
         
+        // initiate controller
         controller.initController();
+        
+        // initiate controller in view
         view.initController(controller);
-
     }
-    
 }
