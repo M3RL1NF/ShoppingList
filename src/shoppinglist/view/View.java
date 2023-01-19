@@ -28,7 +28,7 @@ public class View implements ActionListener{
     private JButton removeButton;
     private JButton addButton;
     
-    public void mainGUI(TableModel tableModel) {
+    public void mainGUI(TableModel tableModel, Double ItemSum) {
 
     // mainFrame
     
