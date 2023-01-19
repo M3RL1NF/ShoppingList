@@ -1,5 +1,6 @@
 package shoppinglist.view;
 
+import shoppinglist.controller.Validator;
 import java.awt.Dimension;
 import java.awt.Point;
 

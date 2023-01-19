@@ -1,4 +1,4 @@
-package shoppinglist.view;
+package shoppinglist.controller;
 
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
