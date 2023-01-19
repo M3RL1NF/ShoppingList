@@ -8,7 +8,7 @@ import java.io.IOException;
 import javax.swing.table.DefaultTableModel;
 
 public final class Controller {
-    private final String[] columnNames  = {"Id", "Anzahl", "Name", "Preis", "Erledigt"};
+    private final String[] columnNames  = {"Id", "Anzahl", "Name", "Preis in €", "Erledigt"};
     public DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
     public Items items;
     public View view;

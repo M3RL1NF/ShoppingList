@@ -6,8 +6,10 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
@@ -29,7 +31,7 @@ public class ChangeItems implements ActionListener {
     private JLabel labelName;
     private JTextField inputPreis;
     private JLabel labelPreis;
-    private JButton changeButton;
+    private JButton confirmButton;
     private JButton cancelButton;
     
     public ChangeItems(Controller controller, int id, int anzahl, String name, Double preis, boolean erledigt) {
@@ -72,9 +74,9 @@ public class ChangeItems implements ActionListener {
         inputPreis = new JTextField(String.valueOf(preis));
         inputPreis.setBounds(50, 123, 193, 28);
         
-        changeButton = new JButton("Speichern");
-        changeButton.addActionListener(this);
-        changeButton.setBounds(50, 160, 193, 28);
+        confirmButton = new JButton("Speichern");
+        confirmButton.addActionListener(this);
+        confirmButton.setBounds(50, 160, 193, 28);
         
         cancelButton = new JButton("Abbrechen");
         cancelButton.addActionListener(this);
@@ -86,7 +88,7 @@ public class ChangeItems implements ActionListener {
         panel.add(inputName);
         panel.add(labelPreis);
         panel.add(inputPreis);
-        panel.add(changeButton);
+        panel.add(confirmButton);
         panel.add(cancelButton);
         
         frame.setVisible(true);
@@ -96,13 +98,21 @@ public class ChangeItems implements ActionListener {
     public void actionPerformed(ActionEvent e){
         Object button = e.getSource();
     
-        if(button == changeButton){
-            int newAnzahl = Integer.parseInt(inputAnzahl.getText());
-            String newName = inputName.getText();
-            double newPreis = Double.parseDouble(inputPreis.getText());
-            
-            controller.updateItem(id, newAnzahl, newName, newPreis, erledigt);
-            frame.dispose();
+         if(button == confirmButton){
+            if (!inputAnzahl.getText().matches("^[0-9]+$")) {
+                JOptionPane.showMessageDialog(frame, "Bitte geben Sie nur eine Ganzzahl ein!");
+            } else if (inputName.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(frame, "Bitte geben Sie einen Artikel an!");
+            } else if (!inputPreis.getText().matches("^\\d+(\\.\\d{0,2})?$")) {
+                JOptionPane.showMessageDialog(frame, "Bitte geben Sie eine Zahl mit maximal 2 Nachkommastellen an!");
+            } else {
+                int newAnzahl = Integer.parseInt(inputAnzahl.getText());
+                String newName = inputName.getText();
+                double newPreis = Double.parseDouble(inputPreis.getText());
+
+                controller.updateItem(id, newAnzahl, newName, newPreis, erledigt);
+                frame.dispose();
+            }
         }
         
         if(button == cancelButton){

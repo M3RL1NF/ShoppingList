@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
@@ -22,83 +23,91 @@ public class AddItems implements ActionListener{
         this.controller = controller;
     }
     
-    private JFrame addFrame;
-    private JPanel addPanel;
-    private JTextField addinputAnzahl;
-    private JLabel addlabelAnzahl;
-    private JTextField addinputName;
-    private JLabel addlabelName;
-    private JTextField addinputPreis;
-    private JLabel addlabelPreis;
-    private JButton addItemButton;
-    private JButton addcancelButton;
+    private JFrame frame;
+    private JPanel panel;
+    private JTextField inputAnzahl;
+    private JLabel labelAnzahl;
+    private JTextField inputName;
+    private JLabel labelName;
+    private JTextField inputPreis;
+    private JLabel labelPreis;
+    private JButton confirmButton;
+    private JButton cancelButton;
     
     public void GUI(){
-        addFrame = new JFrame();
-        addPanel = new JPanel();
+        frame = new JFrame();
+        panel = new JPanel();
         
-        addFrame.setTitle("Fügen sie einen Artikel hinzu!");
-        addFrame.setLocation(new Point(500, 300));
-        addFrame.add(addPanel);
-        addFrame.setSize(new Dimension(313, 300));
-        addFrame.setResizable(false);
-        addFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        frame.setTitle("Fügen sie einen Artikel hinzu!");
+        frame.setLocation(new Point(500, 300));
+        frame.add(panel);
+        frame.setSize(new Dimension(313, 300));
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         
-        addPanel.setLayout(null);
+        panel.setLayout(null);
         
-        addlabelAnzahl = new JLabel("Anzahl: ");
-        addlabelAnzahl.setBounds(50, 7, 70, 20);
+        labelAnzahl = new JLabel("Anzahl: ");
+        labelAnzahl.setBounds(50, 7, 70, 20);
         
-        addinputAnzahl = new JTextField();
-        addinputAnzahl.setBounds(50, 27, 193, 28);
+        inputAnzahl = new JTextField();
+        inputAnzahl.setBounds(50, 27, 193, 28);
         
-        addlabelName = new JLabel("Artikel: ");
-        addlabelName.setBounds(50, 55, 70, 20);
+        labelName = new JLabel("Artikel: ");
+        labelName.setBounds(50, 55, 70, 20);
         
-        addinputName = new JTextField();
-        addinputName.setBounds(50, 75, 193, 28);
+        inputName = new JTextField();
+        inputName.setBounds(50, 75, 193, 28);
         
-        addlabelPreis = new JLabel("Preis: ");
-        addlabelPreis.setBounds(50, 103, 90, 20);
+        labelPreis = new JLabel("Preis: ");
+        labelPreis.setBounds(50, 103, 90, 20);
         
-        addinputPreis = new JTextField();
-        addinputPreis.setBounds(50, 123, 193, 28);
+        inputPreis = new JTextField();
+        inputPreis.setBounds(50, 123, 193, 28);
         
-        addItemButton = new JButton("Hinzufügen");
-        addItemButton.addActionListener(this);
-        addItemButton.setBounds(50, 160, 193, 28);
+        confirmButton = new JButton("Hinzufügen");
+        confirmButton.addActionListener(this);
+        confirmButton.setBounds(50, 160, 193, 28);
         
-        addcancelButton = new JButton("Abbrechen");
-        addcancelButton.addActionListener(this);
-        addcancelButton.setBounds(50, 195, 193, 28);
+        cancelButton = new JButton("Abbrechen");
+        cancelButton.addActionListener(this);
+        cancelButton.setBounds(50, 195, 193, 28);
         
-        addPanel.add(addlabelAnzahl);
-        addPanel.add(addinputAnzahl);
-        addPanel.add(addlabelName);
-        addPanel.add(addinputName);
-        addPanel.add(addlabelPreis);
-        addPanel.add(addinputPreis);
-        addPanel.add(addItemButton);
-        addPanel.add(addcancelButton);
+        panel.add(labelAnzahl);
+        panel.add(inputAnzahl);
+        panel.add(labelName);
+        panel.add(inputName);
+        panel.add(labelPreis);
+        panel.add(inputPreis);
+        panel.add(confirmButton);
+        panel.add(cancelButton);
         
-        addFrame.setVisible(true);
+        frame.setVisible(true);
     }
     
     @Override
     public void actionPerformed(ActionEvent e){
         Object button = e.getSource();
     
-        if(button == addItemButton){
-            int newAnzahl = Integer.parseInt(addinputAnzahl.getText());
-            String newName = addinputName.getText();
-            double newPreis = Double.parseDouble(addinputPreis.getText());
-            
-            controller.addItem(newAnzahl, newName, newPreis, false);
-            addFrame.dispose();
+        if(button == confirmButton){
+            if (!inputAnzahl.getText().matches("^[0-9]+$")) {
+                JOptionPane.showMessageDialog(frame, "Bitte geben Sie nur eine Ganzzahl ein!");
+            } else if (inputName.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(frame, "Bitte geben Sie einen Artikel an!");
+            } else if (!inputPreis.getText().matches("^\\d+(\\.\\d{0,2})?$")) {
+                JOptionPane.showMessageDialog(frame, "Bitte geben Sie eine Zahl mit maximal 2 Nachkommastellen an!");
+            } else {
+                int newAnzahl = Integer.parseInt(inputAnzahl.getText());
+                String newName = inputName.getText();
+                double newPreis = Double.parseDouble(inputPreis.getText());
+
+                controller.addItem(newAnzahl, newName, newPreis, false);
+                frame.dispose();
+            }
         }
         
-        if(button == addcancelButton){
-            addFrame.dispose();
+        if(button == cancelButton){
+            frame.dispose();
         }
     }
 }

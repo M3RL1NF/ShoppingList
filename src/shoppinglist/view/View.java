@@ -104,26 +104,22 @@ public class View implements ActionListener{
         
         frame.setVisible(true);
     };
-    
-// Action Listener
-    
+       
     @Override
     public void actionPerformed(ActionEvent e){
         Object button = e.getSource();
-        
-    // mainGUI ActionListerners
-        
+                
         if(button == doneButton){
             if(table.getSelectedRow() == -1){
                 JOptionPane.showMessageDialog(frame, "Bitte wählen sie einen Artikel aus!");
             } else {
                 int id = (Integer) table.getModel().getValueAt(table.getSelectedRow(), 0);
-                int anzahl = (Integer) table.getModel().getValueAt(table.getSelectedRow(), 1);
-                String name = (String) table.getModel().getValueAt(table.getSelectedRow(), 2); 
+                int anzahl = (Integer)table.getModel().getValueAt(table.getSelectedRow(), 1);
+                String name = (String) table.getModel().getValueAt(table.getSelectedRow(), 2);
                 Double preis = (Double) table.getModel().getValueAt(table.getSelectedRow(), 3);
-                boolean done = (boolean) table.getModel().getValueAt(table.getSelectedRow(), 4);
+                boolean erledigt = (boolean) table.getModel().getValueAt(table.getSelectedRow(), 4);
                 
-                controller.updateItem(id, anzahl, name, preis, !done);
+                controller.updateItem(id, anzahl, name, preis, !erledigt);
             }
         }
             
@@ -138,7 +134,7 @@ public class View implements ActionListener{
             } else {
                 int id = (Integer) table.getModel().getValueAt(table.getSelectedRow(), 0);
                 int anzahl = (Integer) table.getModel().getValueAt(table.getSelectedRow(), 1);
-                String name = (String) table.getModel().getValueAt(table.getSelectedRow(), 2); 
+                String name = (String) table.getModel().getValueAt(table.getSelectedRow(), 2);
                 Double preis = (Double) table.getModel().getValueAt(table.getSelectedRow(), 3);
                 boolean erledigt = (boolean) table.getModel().getValueAt(table.getSelectedRow(), 4);
                 
@@ -152,7 +148,6 @@ public class View implements ActionListener{
                 JOptionPane.showMessageDialog(frame, "Bitte wählen sie einen Artikel aus!");
             } else {
                 int id = (Integer) table.getModel().getValueAt(table.getSelectedRow(), 0);
-                
                 controller.deleteItem(id);
             }
         }
