@@ -28,7 +28,7 @@ public final class Controller {
     
     // open view with JTable data
     public void initView() {
-        view.mainGUI(tableModel);
+        view.GUI(tableModel);
     }
     
     // build JTable data
