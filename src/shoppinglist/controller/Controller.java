@@ -49,6 +49,10 @@ public final class Controller {
         }
     }
     
+    public double getItemSum() {
+        return items.getItemSum();
+    }
+    
     // add item to runtime arraylist
     public void addItem(int anzahl, String name, double preis, boolean erledigt) {
         Item item = new Item(items.setId(), anzahl, name, preis, erledigt);

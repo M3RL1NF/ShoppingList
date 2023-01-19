@@ -16,6 +16,16 @@ public class Items {
         }
     }
     
+    public double getItemSum() {
+        double sum = 0;
+        
+        for (int i=0; i < itemList.size(); i++) {
+            sum += itemList.get(i).getPreis();
+        }
+        
+        return sum;
+    }
+    
     // add item to runtime itemList
     public void add(Item item) {
         itemList.add(item);
