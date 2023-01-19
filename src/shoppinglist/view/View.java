@@ -29,7 +29,7 @@ public class View implements ActionListener{
     private JButton addButton;
     
     public void GUI(TableModel tableModel) {
-
+        
     // mainFrame
     
         frame = new JFrame();

@@ -6,10 +6,8 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
@@ -97,15 +95,10 @@ public class ChangeItems implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e){
         Object button = e.getSource();
-    
-         if(button == confirmButton){
-            if (!inputAnzahl.getText().matches("^[0-9]+$")) {
-                JOptionPane.showMessageDialog(frame, "Bitte geben Sie nur eine Ganzzahl ein!");
-            } else if (inputName.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(frame, "Bitte geben Sie einen Artikel an!");
-            } else if (!inputPreis.getText().matches("^\\d+(\\.\\d{0,2})?$")) {
-                JOptionPane.showMessageDialog(frame, "Bitte geben Sie eine Zahl mit maximal 2 Nachkommastellen an!");
-            } else {
+        
+        if(button == confirmButton){
+            Validator validator = new Validator(frame);
+            if (validator.runValidation(inputAnzahl, inputName, inputPreis)){
                 int newAnzahl = Integer.parseInt(inputAnzahl.getText());
                 String newName = inputName.getText();
                 double newPreis = Double.parseDouble(inputPreis.getText());
