@@ -8,6 +8,7 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.table.TableModel;
 import javax.swing.*;
+import javax.swing.table.TableCellRenderer;
 
 public class View implements ActionListener{
     public Controller controller;
@@ -46,12 +47,15 @@ public class View implements ActionListener{
         
     // Table Container Items
 
+
+        
         table = new JTable(tableModel);
         table.getColumnModel().getColumn(0).setWidth(0);
         table.getColumnModel().getColumn(0).setMinWidth(0);
         table.getColumnModel().getColumn(0).setMaxWidth(0);
         table.getTableHeader().setReorderingAllowed(false);
         table.setDefaultEditor(Object.class, null);
+        table.getColumnModel().getColumn(4).setCellRenderer(checkBoxRenderer);
         table.setRowHeight(40);
         table.setShowVerticalLines(false);
         table.setFont(new Font(Font.DIALOG,  Font.ITALIC, 15));
@@ -104,7 +108,32 @@ public class View implements ActionListener{
         
         frame.setVisible(true);
     };
-       
+
+    CheckBoxRenderer checkBoxRenderer = new CheckBoxRenderer();
+            
+    public Class<?> getColumnClass(int columnIndex) {
+       return Boolean.class;
+    }
+    
+    public class CheckBoxRenderer extends JCheckBox implements TableCellRenderer {
+
+
+          @Override
+          public Component getTableCellRendererComponent(JTable table, Object value,
+              boolean isSelected, boolean hasFocus, int row, int column) {
+            if (isSelected) {
+              setForeground(table.getSelectionForeground());
+              //super.setBackground(table.getSelectionBackground());
+              setBackground(table.getSelectionBackground());
+            } else {
+              setForeground(table.getForeground());
+              setBackground(table.getBackground());
+            }
+            setSelected((value != null && ((Boolean) value).booleanValue()));
+            return this;
+          }
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e){
         Object button = e.getSource();

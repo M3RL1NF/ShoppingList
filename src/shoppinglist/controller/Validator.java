@@ -39,7 +39,7 @@ public class Validator {
         }
         
         if (!this.validatePreis()){
-            errorMessage = errorMessage + "Bitte geben Sie einen Geldwert mit maximal zwei Nachkommastellen an und nutzen sie einen Punkt!" + "\n";
+            errorMessage = errorMessage + "Bitte geben Sie einen Geldwert an!" + "\n";
         }
         
         if (!errorMessage.isEmpty()){
@@ -59,6 +59,6 @@ public class Validator {
     }
     
     public boolean validatePreis() {
-        return preis.matches("^\\d+(\\.\\d{0,2})?$");
+        return preis.matches("^(\\d+)([.,]\\d{1,2})?$");
     }
 }

@@ -94,7 +94,7 @@ public class AddItems implements ActionListener{
             if (validator.runValidation(inputAnzahl, inputName, inputPreis)){
                 int newAnzahl = Integer.parseInt(inputAnzahl.getText());
                 String newName = inputName.getText();
-                double newPreis = Double.parseDouble(inputPreis.getText());
+                double newPreis = Double.parseDouble(inputPreis.getText().replaceAll(",", "."));
 
                 controller.addItem(newAnzahl, newName, newPreis, false);
                 frame.dispose();

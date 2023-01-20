@@ -1,6 +1,5 @@
 package shoppinglist.view;
 
-import shoppinglist.controller.Validator;
 import shoppinglist.controller.*;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -16,30 +15,30 @@ import javax.swing.WindowConstants;
 public class ChangeItems implements ActionListener {    
     public Controller controller;
     
-    private final int id;
-    private final int anzahl;
-    private final String name;
-    private final Double preis;
+    private final int     id;
+    private final int     anzahl;
+    private final String  name;
+    private final double  preis;
     private final boolean erledigt;
     
-    private JFrame frame;
-    private JPanel panel;
-    private JTextField inputAnzahl;
-    private JLabel labelAnzahl;
-    private JTextField inputName;
-    private JLabel labelName;
-    private JTextField inputPreis;
-    private JLabel labelPreis;
-    private JButton confirmButton;
-    private JButton cancelButton;
+    private JFrame      frame;
+    private JPanel      panel;
+    private JTextField  inputAnzahl;
+    private JLabel      labelAnzahl;
+    private JTextField  inputName;
+    private JLabel      labelName;
+    private JTextField  inputPreis;
+    private JLabel      labelPreis;
+    private JButton     confirmButton;
+    private JButton     cancelButton;
     
-    public ChangeItems(Controller controller, int id, int anzahl, String name, Double preis, boolean erledigt) {
+    public ChangeItems(Controller controller, int id, int anzahl, String name, double preis, boolean erledigt) {
         this.controller = controller;
-        this.id = id;
-        this.anzahl = anzahl;
-        this.name = name;
-        this.preis = preis;
-        this.erledigt = erledigt;
+        this.id         = id;
+        this.anzahl     = anzahl;
+        this.name       = name;
+        this.preis      = preis;
+        this.erledigt   = erledigt;
     }
     
     public void GUI() {
@@ -102,7 +101,7 @@ public class ChangeItems implements ActionListener {
             if (validator.runValidation(inputAnzahl, inputName, inputPreis)){
                 int newAnzahl = Integer.parseInt(inputAnzahl.getText());
                 String newName = inputName.getText();
-                double newPreis = Double.parseDouble(inputPreis.getText());
+                double newPreis = Double.parseDouble(inputPreis.getText().replaceAll(",", "."));
 
                 controller.updateItem(id, newAnzahl, newName, newPreis, erledigt);
                 frame.dispose();
