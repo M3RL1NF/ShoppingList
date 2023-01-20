@@ -4,7 +4,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-public class Validator {
+// validate inputs from view
+public class ValidationController {
     
     private final JFrame frame;
     
@@ -15,10 +16,11 @@ public class Validator {
     private boolean validated = false; 
     private String errorMessage = "";
     
-    public Validator(JFrame frame) {
+    public ValidationController(JFrame frame) {
         this.frame = frame;
     }
     
+    // validate textfield inputs
     public boolean runValidation(JTextField anzahl, JTextField name, JTextField preis){
         this.anzahl = anzahl.getText();
         this.name = name.getText();
@@ -29,9 +31,10 @@ public class Validator {
         return validated;
     }
     
+    // build error message and open dialog
     public void errorMessage() {
         if (!this.validateAnzahl()){
-            errorMessage = errorMessage + "Bitte geben Sie eine Ganzzahl an!" + "\n";
+            errorMessage = errorMessage + "Bitte geben Sie eine Anzahl an!" + "\n";
         }
         
         if (!this.validateName()){
@@ -39,7 +42,7 @@ public class Validator {
         }
         
         if (!this.validatePreis()){
-            errorMessage = errorMessage + "Bitte geben Sie einen Geldwert an!" + "\n";
+            errorMessage = errorMessage + "Bitte geben Sie einen Preis an!" + "\n";
         }
         
         if (!errorMessage.isEmpty()){
@@ -50,14 +53,17 @@ public class Validator {
         }
     }
     
+    // check regex match
     public boolean validateAnzahl() {
         return anzahl.matches("^[0-9]+$");
     }
     
+    // check not empty
     public boolean validateName() {
         return !name.isEmpty();
     }
     
+    // check regex match
     public boolean validatePreis() {
         return preis.matches("^(\\d+)([.,]\\d{1,2})?$");
     }

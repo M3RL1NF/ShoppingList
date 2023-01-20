@@ -1,20 +1,18 @@
 package shoppinglist.controller;
 
 import shoppinglist.view.*;
-import shoppinglist.model.Items;
-import shoppinglist.model.Item;
-import shoppinglist.model.ItemsDAO;
+import shoppinglist.model.*;
 import java.io.IOException;
 import javax.swing.table.DefaultTableModel;
 
-public final class Controller {
+public final class MainController {
     private final String[] columnNames  = {"Id", "Anzahl", "Name", "Preis in €", "Erledigt"};
     public DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
     public Items items;
-    public View view;
+    public ShowItemView view;
     
     // set view and items, inititate view
-    public Controller(View view, Items items) {
+    public MainController(ShowItemView view, Items items) {
         this.view = view;
         this.items = items;
         initView();
