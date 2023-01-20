@@ -141,7 +141,6 @@ public class ShowItemView implements ActionListener {
                     ChangeItemView changeItems = new ChangeItemView(mainController, id, anzahl, name, preis, erledigt);
                     changeItems.GUI();
                 }
-                
             }
         }
 
@@ -153,7 +152,7 @@ public class ShowItemView implements ActionListener {
 
         // delete item
         if (button == removeButton) {
-            if (table.getSelectedRow() == -1){
+            if (table.getSelectedRow() == -1) {
                 this.showSelectArticleDialog();
             } else {
                 int id = (Integer) table.getModel().getValueAt(table.getSelectedRow(), 0);
