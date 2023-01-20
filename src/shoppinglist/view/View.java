@@ -28,84 +28,81 @@ public class View implements ActionListener{
     private JButton changeButton;
     private JButton removeButton;
     private JButton addButton;
-    private double itemSum;
     
     public void GUI(TableModel tableModel) {
     // mainFrame
 
-        frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Shopping List");
-        frame.setLayout(new BorderLayout());
-        frame.setSize(800,650);
-        
+    frame = new JFrame();
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setTitle("Shopping List");
+    frame.setLayout(new BorderLayout());
+    frame.setSize(800,650);
+
     // Table Container
-        
-        tableContainer = new JPanel();
-        tableContainer.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 0));
-        tableContainer.setLayout(new BorderLayout());
-        
+
+    tableContainer = new JPanel();
+    tableContainer.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 0));
+    tableContainer.setLayout(new BorderLayout());
+
     // Table Container Items
-        
-        table = new JTable(tableModel);
-        table.getColumnModel().getColumn(0).setWidth(0);
-        table.getColumnModel().getColumn(0).setMinWidth(0);
-        table.getColumnModel().getColumn(0).setMaxWidth(0);
-        table.getTableHeader().setReorderingAllowed(false);
-        table.setDefaultEditor(Object.class, null);
-        table.getColumnModel().getColumn(4).setCellRenderer(checkBoxRenderer);
-        table.setRowHeight(40);
-        table.setShowVerticalLines(false);
-        table.setFont(new Font(Font.DIALOG,  Font.ITALIC, 15));
-        table.getColumnModel().setColumnMargin(0);
-        
-        tableScrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-                        
+
+    table = new JTable(tableModel);
+    table.getColumnModel().getColumn(0).setWidth(0);
+    table.getColumnModel().getColumn(0).setMinWidth(0);
+    table.getColumnModel().getColumn(0).setMaxWidth(0);
+    table.getTableHeader().setReorderingAllowed(false);
+    table.setDefaultEditor(Object.class, null);
+    table.getColumnModel().getColumn(4).setCellRenderer(checkBoxRenderer);
+    table.setRowHeight(40);
+    table.setShowVerticalLines(false);
+    table.setFont(new Font(Font.DIALOG,  Font.ITALIC, 15));
+    table.getColumnModel().setColumnMargin(0);
+
+    tableScrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
     // functionContainer
-            
-        functionContainer = new JPanel();
-        functionContainer.setPreferredSize(new Dimension(160,0));
-        functionContainer.setVisible(true);
-        
+
+    functionContainer = new JPanel();
+    functionContainer.setPreferredSize(new Dimension(160,0));
+
     // functionContainer Items
-        
-        doneButton = new JButton("Erledigt");
-        doneButton.addActionListener(this);
-        doneButton.setPreferredSize(new Dimension(150,30));
 
-        addButton = new JButton("Hinzufügen");
-        addButton.addActionListener(this);
-        addButton.setPreferredSize(new Dimension(150,30));
+    doneButton = new JButton("Erledigt");
+    doneButton.addActionListener(this);
+    doneButton.setPreferredSize(new Dimension(150,30));
 
-        changeButton = new JButton("Bearbeiten");
-        changeButton.addActionListener(this);
-        changeButton.setPreferredSize(new Dimension(150,30));
+    addButton = new JButton("Hinzufügen");
+    addButton.addActionListener(this);
+    addButton.setPreferredSize(new Dimension(150,30));
 
-        removeButton = new JButton("Löschen");
-        removeButton.addActionListener(this);
-        removeButton.setPreferredSize(new Dimension(150,30));
-            
-        
+    changeButton = new JButton("Bearbeiten");
+    changeButton.addActionListener(this);
+    changeButton.setPreferredSize(new Dimension(150,30));
+
+    removeButton = new JButton("Löschen");
+    removeButton.addActionListener(this);
+    removeButton.setPreferredSize(new Dimension(150,30));
+
     // frame.add Section
-        
-        frame.add(tableContainer, BorderLayout.CENTER);
-        frame.add(functionContainer, BorderLayout.EAST);
-        
+
+    frame.add(tableContainer, BorderLayout.CENTER);
+    frame.add(functionContainer, BorderLayout.EAST);
+
     // tableContainer.add 
-        
-        tableContainer.add(tableScrollPane, BorderLayout.CENTER);
-        
+
+    tableContainer.add(tableScrollPane, BorderLayout.CENTER);
+
     // functionContainer.add
-        
-        functionContainer.add(doneButton);
-        functionContainer.add(addButton);
-        functionContainer.add(changeButton);
-        functionContainer.add(removeButton);
-        
+
+    functionContainer.add(doneButton);
+    functionContainer.add(addButton);
+    functionContainer.add(changeButton);
+    functionContainer.add(removeButton);
+
     // Frame.setVisible(True);
-        
-        frame.setVisible(true);
-    };
+
+    frame.setVisible(true);
+};
 
     CheckBoxRenderer checkBoxRenderer = new CheckBoxRenderer();
             
@@ -125,7 +122,7 @@ public class View implements ActionListener{
                   setForeground(table.getForeground());
                   setBackground(table.getBackground());
                 }
-                setSelected((value != null && ((Boolean) value).booleanValue()));
+                setSelected((value != null && ((Boolean) value)));
                 return this;
         }
     }
@@ -175,16 +172,6 @@ public class View implements ActionListener{
                 int id = (Integer) table.getModel().getValueAt(table.getSelectedRow(), 0);
                 controller.deleteItem(id);
             }
-        }
-        
-        this.setItemSum();
-        
-    }    
-    
-    public void setItemSum() {
-        for(int i = 0; i < table.getRowCount(); i++){
-            double sum = (Double) table.getModel().getValueAt(i, 3);
-            itemSum = itemSum + sum;
         }
     }
 }
