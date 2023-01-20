@@ -28,11 +28,11 @@ public class View implements ActionListener{
     private JButton changeButton;
     private JButton removeButton;
     private JButton addButton;
+    private double itemSum;
     
     public void GUI(TableModel tableModel) {
-        
     // mainFrame
-    
+
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Shopping List");
@@ -46,8 +46,6 @@ public class View implements ActionListener{
         tableContainer.setLayout(new BorderLayout());
         
     // Table Container Items
-
-
         
         table = new JTable(tableModel);
         table.getColumnModel().getColumn(0).setWidth(0);
@@ -116,22 +114,20 @@ public class View implements ActionListener{
     }
     
     public class CheckBoxRenderer extends JCheckBox implements TableCellRenderer {
-
-
-          @Override
-          public Component getTableCellRendererComponent(JTable table, Object value,
-              boolean isSelected, boolean hasFocus, int row, int column) {
-            if (isSelected) {
-              setForeground(table.getSelectionForeground());
-              //super.setBackground(table.getSelectionBackground());
-              setBackground(table.getSelectionBackground());
-            } else {
-              setForeground(table.getForeground());
-              setBackground(table.getBackground());
-            }
-            setSelected((value != null && ((Boolean) value).booleanValue()));
-            return this;
-          }
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+                if (isSelected) {
+                  setForeground(table.getSelectionForeground());
+                  //super.setBackground(table.getSelectionBackground());
+                  setBackground(table.getSelectionBackground());
+                } else {
+                  setForeground(table.getForeground());
+                  setBackground(table.getBackground());
+                }
+                setSelected((value != null && ((Boolean) value).booleanValue()));
+                return this;
+        }
     }
     
     @Override
@@ -180,5 +176,15 @@ public class View implements ActionListener{
                 controller.deleteItem(id);
             }
         }
+        
+        this.setItemSum();
+        
     }    
+    
+    public void setItemSum() {
+        for(int i = 0; i < table.getRowCount(); i++){
+            double sum = (Double) table.getModel().getValueAt(i, 3);
+            itemSum = itemSum + sum;
+        }
+    }
 }
