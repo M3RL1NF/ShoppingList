@@ -1,5 +1,5 @@
 # ShoppingList
- JAVA SWING MVC Project P3
+JAVA SWING MVC Project P3
  
 ## Requirements:
 - GitHub User 
